@@ -36,7 +36,7 @@ describe 'Items API', type: :request do
         expect(json).not_to be_empty
         expect(json.size).to eq(2)
 
-        message = 'your record could not be created'
+        message = 'your record could not be saved'
         error_message = [
           'Merchant must exist',
           "Description can't be blank",

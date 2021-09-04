@@ -19,7 +19,7 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordInvalid do |e|
       json_response(
         {
-          message: 'your record could not be created',
+          message: 'your record could not be saved',
           errors: e.record.errors.full_messages
         },
         :unprocessable_entity
