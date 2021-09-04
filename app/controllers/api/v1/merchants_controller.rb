@@ -6,6 +6,13 @@ class Api::V1::MerchantsController < ApplicationController
     per_page = params.fetch(:per_page, 20).to_i
     offset = page <= 1 ? 0 : (page - 1) * per_page
     merchants = Merchant.all.offset(offset).limit(per_page)
-    render json: MerchantSerializer.format_merchants(merchants)
+    formatted_merchants = MerchantSerializer.format_merchants(merchants)
+    json_response(formatted_merchants)
+  end
+
+  def show
+    merchant = Merchant.find(params[:id])
+    formatted_merchant = MerchantSerializer.format_merchant(merchant)
+    json_response(formatted_merchant)
   end
 end
