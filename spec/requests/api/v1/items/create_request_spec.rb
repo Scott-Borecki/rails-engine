@@ -38,10 +38,10 @@ describe 'Items API', type: :request do
 
         message = 'your record could not be created'
         error_message = [
-          "Merchant must exist",
+          'Merchant must exist',
           "Description can't be blank",
           "Unit price can't be blank",
-          "Unit price is not a number"
+          'Unit price is not a number'
         ]
 
         expect(json[:message]).to eq(message)
