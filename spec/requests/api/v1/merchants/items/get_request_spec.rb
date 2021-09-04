@@ -37,7 +37,7 @@ describe 'Merchant Items API', type: :request do
     end
 
     context 'when the merchant does not exist' do
-      before { get "/api/v1/merchants/40/items" }
+      before { get '/api/v1/merchants/40/items' }
 
       it 'returns an error message', :aggregate_failures do
         expect(json).not_to be_empty
