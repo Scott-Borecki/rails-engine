@@ -9,4 +9,10 @@ class Api::V1::ItemsController < ApplicationController
     formatted_items = ItemSerializer.format_items(items)
     json_response(formatted_items)
   end
+
+  def show
+    item = Item.find(params[:id])
+    formatted_item = ItemSerializer.format_item(item)
+    json_response(formatted_item)
+  end
 end
