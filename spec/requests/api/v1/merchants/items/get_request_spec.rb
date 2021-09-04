@@ -8,7 +8,7 @@ describe 'Merchant Items API', type: :request do
     context 'when the merchant has no items' do
       before { get "/api/v1/merchants/#{merchant.id}/items" }
 
-      it "returns the merchant's items", :aggregate_failures do
+      it "returns the data as an empty array", :aggregate_failures do
         expect(json).not_to be_empty
         expect(json_data).to be_empty
       end
