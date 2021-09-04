@@ -22,6 +22,14 @@ class Api::V1::ItemsController < ApplicationController
     json_response(formatted_item, :created)
   end
 
+  def update
+    item = Item.find(params[:id])
+    Merchant.find(params[:merchant_id]) if params[:merchant_id]
+    item.update!(item_params)
+    formatted_item = ItemSerializer.format_item(item)
+    json_response(formatted_item)
+  end
+
   private
 
   def item_params
