@@ -71,6 +71,7 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Exclude:
     - 'spec/**/*.rb'
+    - 'app/serializers/**/*.rb'
 
 Metrics/ModuleLength:
   Exclude:

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Merchant Serializer', type: :serializer do
+describe 'MerchantSerializer', type: :serializer do
   describe 'class methods' do
     describe '.format_merchants' do
-      it 'formats the merchants response for delivery' do
+      it 'formats the merchants response for delivery', :aggregate_failures do
         merchants_list = create_list(:merchant, 20)
 
         merchants = MerchantSerializer.format_merchants(merchants_list)
