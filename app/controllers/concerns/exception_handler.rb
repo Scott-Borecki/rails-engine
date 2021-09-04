@@ -16,12 +16,11 @@ module ExceptionHandler
 
     # Raised by ActiveRecord::Base#save! and ActiveRecord::Base#create! when
     #   the record is invalid
-    # TODO: Fix errors so it can return multiple errors as elements of an array.
     rescue_from ActiveRecord::RecordInvalid do |e|
       json_response(
         {
-          message: e.message,
-          errors: [e.message]
+          message: 'your record could not be created',
+          errors: e.record.errors.full_messages
         },
         :unprocessable_entity
       )
