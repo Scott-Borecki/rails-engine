@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Merchants API', type: :request do
-  describe 'GET /merchants' do
+  describe 'GET /api/v1/merchants' do
     context 'when there are merchants' do
       let!(:merchants) { create_list(:merchant, 30) }
 

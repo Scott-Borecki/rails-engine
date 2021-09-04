@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Items API', type: :request do
-  describe 'GET /items' do
+  describe 'GET /api/v1/items' do
     context 'when there are items' do
       let!(:items) { create_list(:item, 30) }
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Merchant Items API', type: :request do
-  describe 'GET /merchants/:merchant_id/items' do
+  describe 'GET /api/v1/merchants/:merchant_id/items' do
     let!(:merchants) { create_list(:merchant, 30) }
     let(:merchant) { merchants.first }
 
