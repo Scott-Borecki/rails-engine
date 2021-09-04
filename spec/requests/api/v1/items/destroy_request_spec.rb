@@ -15,7 +15,7 @@ describe 'Items API', type: :request do
 
     context 'when the item does not exist' do
       let(:bad_item_id) { item.id + 1 }
-      
+
       before { delete "/api/v1/items/#{bad_item_id}" }
 
       it 'returns an error message', :aggregate_failures do
