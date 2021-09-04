@@ -30,6 +30,11 @@ class Api::V1::ItemsController < ApplicationController
     json_response(formatted_item)
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+  end
+
   private
 
   def item_params
