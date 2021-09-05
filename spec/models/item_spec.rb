@@ -18,4 +18,32 @@ RSpec.describe Item, type: :model do
       expect(item).to be_valid
     end
   end
+
+  describe 'class methods' do
+    describe '.order_by_name' do
+      let!(:item1) { create(:item, name: 'Boston Red Sox Cap',    unit_price: 19.99) }
+      let!(:item2) { create(:item, name: 'bare knuckles',         unit_price: 2.49) }
+      let!(:item3) { create(:item, name: 'American Flag',         unit_price: 149.99) }
+      let!(:item4) { create(:item, name: 'Crossword Puzzle Book', unit_price: 9.97) }
+
+      context 'when I do not provide any parameters' do
+        it 'orders the items by name (case-sensitive) in ascending order (default)' do
+          expect(Item.order_by_name).to eq([item3, item1, item4, item2])
+        end
+      end
+
+      context 'when I provide a parameter "desc"' do
+        it 'orders the items by name (case-sensitive) in descending order' do
+          expect(Item.order_by_name('desc')).to eq([item2, item4, item1, item3])
+        end
+      end
+
+      context 'when I provide a parameter other than "desc"' do
+        it 'orders the items by name (case-sensitive) in ascending order (default)' do
+          expect(Item.order_by_name(123)).to eq([item3, item1, item4, item2])
+          expect(Item.order_by_name('des')).to eq([item3, item1, item4, item2])
+        end
+      end
+    end
+  end
 end

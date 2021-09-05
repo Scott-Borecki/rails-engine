@@ -7,4 +7,9 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :unit_price, presence: true, numericality: true
+
+  def self.order_by_name(order = 'asc')
+    order == 'desc' ? order = 'desc' : order = 'asc'
+    order(name: order)
+  end
 end
