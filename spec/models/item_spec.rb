@@ -50,11 +50,11 @@ RSpec.describe Item, type: :model do
     end
 
     describe '.find_by_min_price' do
-      let!(:item1) { create(:item, name: 'BaA', unit_price: 6.49) } # Name Asc: 2; Price Desc: 4
-      let!(:item2) { create(:item, name: 'baa', unit_price: 7.39) } # Name Asc: 5; Price Desc: 3
-      let!(:item3) { create(:item, name: 'bAA', unit_price: 9.19) } # Name Asc: 4; Price Desc: 1
-      let!(:item4) { create(:item, name: 'Baa', unit_price: 8.29) } # Name Asc: 3; Price Desc: 2
-      let!(:item5) { create(:item, name: 'BAa', unit_price: 5.59) } # Name Asc: 1; Price Desc: 5
+      let!(:item1) { create(:item, name: 'BaA', unit_price: 5.25) } # Name Asc: 2; Price Desc: 5
+      let!(:item2) { create(:item, name: 'baa', unit_price: 7.53) } # Name Asc: 5; Price Desc: 3
+      let!(:item3) { create(:item, name: 'bAA', unit_price: 9.41) } # Name Asc: 4; Price Desc: 1
+      let!(:item4) { create(:item, name: 'Baa', unit_price: 8.32) } # Name Asc: 3; Price Desc: 2
+      let!(:item5) { create(:item, name: 'BAa', unit_price: 6.14) } # Name Asc: 1; Price Desc: 4
 
       context 'when I provide a valid minimum price' do
         context 'when there are items with a unit price more than the minimum price' do
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
             expect(Item.find_by_min_price('3')).to eq(item5)
 
             # It evaluates the price as greater than or equal to
-            expect(Item.find_by_min_price(8.29)).to eq(item4)
+            expect(Item.find_by_min_price(8.32)).to eq(item4)
           end
         end
 
@@ -85,9 +85,9 @@ RSpec.describe Item, type: :model do
 
       context 'when I provid an invalid minimum price' do
         it 'returns nil' do
-          expect(Item.find_by_min_price('ten')).to eq(nil)
-          expect(Item.find_by_min_price('ten10')).to eq(nil)
-          expect(Item.find_by_min_price('10ten')).to eq(nil)
+          expect(Item.find_by_min_price('one')).to eq(nil)
+          expect(Item.find_by_min_price('one1')).to eq(nil)
+          expect(Item.find_by_min_price('1one')).to eq(nil)
         end
       end
     end
