@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show] do
         resources :items, only: [:index], controller: 'merchants/items'
       end
+
+      namespace :items do
+        resources :find, only: [:index]
+      end
+
       resources :items, only: [:index, :show, :create, :update, :destroy] do
         resources :merchant, only: [:index], controller: 'items/merchant'
       end
