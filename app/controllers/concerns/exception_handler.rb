@@ -26,4 +26,8 @@ module ExceptionHandler
       )
     end
   end
+
+  def bad_request
+    json_response({ error: nil }, :bad_request)
+  end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Items API', type: :request do
-  describe 'SHOW /api/v1/items/:id' do
+  describe 'GET /api/v1/items/:id' do
     let!(:items) { create_list(:item, 30) }
     let(:item_id) { items.first.id }
 
