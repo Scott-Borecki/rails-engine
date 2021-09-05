@@ -19,7 +19,7 @@ describe 'Items Find API', type: :request do
       end
 
       context 'when I provide any empty query parameter' do
-        before { get "/api/v1/items/find?name=" }
+        before { get '/api/v1/items/find?name=' }
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
@@ -157,7 +157,7 @@ describe 'Items Find API', type: :request do
 
       context 'when I search by name and maximum price' do
         context 'when I use valid parameters' do
-          before { get "/api/v1/items/find?name=aa&max_price=100" }
+          before { get '/api/v1/items/find?name=aa&max_price=100' }
 
           it 'returns status code 400: bad request' do
             expect(response).to have_http_status(:bad_request)
@@ -167,7 +167,7 @@ describe 'Items Find API', type: :request do
     end
 
     context 'when there are no item records' do
-      before { get "/api/v1/items/find?name=ccc" }
+      before { get '/api/v1/items/find?name=ccc' }
 
       it 'returns a jSON with nil data', :aggregate_failures do
         expect(json).not_to be_empty
