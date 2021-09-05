@@ -16,8 +16,7 @@ class Item < ApplicationRecord
   def self.find_by_name(name = nil)
     return nil if name.nil?
 
-    where("name ILIKE ?", "%#{name}%")
-      .order_by_name
-      .first
+    order_by_name
+      .find_by('name ILIKE ?', "%#{name}%")
   end
 end
