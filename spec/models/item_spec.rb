@@ -214,6 +214,12 @@ RSpec.describe Item, type: :model do
           expect(Item.find_by_price_range('1one', 1)).to eq(nil)
         end
       end
+
+      context 'when I provide a minimum price greater than the maximum price' do
+        it 'returns "bad request"' do
+          expect(Item.find_by_price_range(10, 1)).to eq('bad request')
+        end
+      end
     end
 
     describe '.find_by_name' do
