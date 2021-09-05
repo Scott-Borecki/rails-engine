@@ -13,13 +13,23 @@ describe 'Items Find API', type: :request do
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/items/find' }
 
+        it 'returns a jSON object with an error' do
+          expect(json).to have_key(:error)
+          expect(json[:error]).to be_nil
+        end
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end
       end
 
-      context 'when I provide any empty query parameter' do
+      context 'when I provide an empty query parameter' do
         before { get '/api/v1/items/find?name=' }
+
+        it 'returns a jSON object with an error' do
+          expect(json).to have_key(:error)
+          expect(json[:error]).to be_nil
+        end
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
@@ -67,6 +77,19 @@ describe 'Items Find API', type: :request do
             expect(response).to have_http_status(:ok)
           end
         end
+
+        context 'when I use a negative minimum price' do
+          before { get '/api/v1/items/find?min_price=-10' }
+
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
+
+          it 'returns status code 400: bad request' do
+            expect(response).to have_http_status(:bad_request)
+          end
+        end
       end
 
       context 'when I search by maximum price' do
@@ -94,6 +117,19 @@ describe 'Items Find API', type: :request do
 
           it 'returns status code 200: ok' do
             expect(response).to have_http_status(:ok)
+          end
+        end
+
+        context 'when I use a negative maximum price' do
+          before { get '/api/v1/items/find?max_price=-10' }
+
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
+
+          it 'returns status code 400: bad request' do
+            expect(response).to have_http_status(:bad_request)
           end
         end
       end
@@ -129,7 +165,25 @@ describe 'Items Find API', type: :request do
         context 'when the minimum price is greater than the maximum price' do
           before { get '/api/v1/items/find?max_price=1&min_price=10' }
 
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
+
           it 'returns status code 400: bad request' do
+            expect(response).to have_http_status(:bad_request)
+          end
+        end
+
+        context 'when I use a negative minimum or maximum price' do
+          it 'returns status code 400: bad request' do
+            get '/api/v1/items/find?max_price=-1&min_price=10'
+            expect(response).to have_http_status(:bad_request)
+
+            get '/api/v1/items/find?max_price=1&min_price=-10'
+            expect(response).to have_http_status(:bad_request)
+
+            get '/api/v1/items/find?max_price=-1&min_price=-10'
             expect(response).to have_http_status(:bad_request)
           end
         end
@@ -138,6 +192,11 @@ describe 'Items Find API', type: :request do
       context 'when I search by name, minimum price, and maximum price' do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&max_price=150&min_price=10' }
+
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
 
           it 'returns status code 400: bad request' do
             expect(response).to have_http_status(:bad_request)
@@ -149,6 +208,11 @@ describe 'Items Find API', type: :request do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&min_price=10' }
 
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
+
           it 'returns status code 400: bad request' do
             expect(response).to have_http_status(:bad_request)
           end
@@ -158,6 +222,11 @@ describe 'Items Find API', type: :request do
       context 'when I search by name and maximum price' do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&max_price=100' }
+
+          it 'returns a jSON object with an error' do
+            expect(json).to have_key(:error)
+            expect(json[:error]).to be_nil
+          end
 
           it 'returns status code 400: bad request' do
             expect(response).to have_http_status(:bad_request)

@@ -16,6 +16,8 @@ class Item < ApplicationRecord
 
   def self.find_by_max_price(price = nil)
     price = convert_to_float(price)
+    return nil if price.nil?
+    return 'bad request' if price < 0
 
     order_by_name
       .find_by('unit_price <= ?', price)
@@ -23,6 +25,8 @@ class Item < ApplicationRecord
 
   def self.find_by_min_price(price = nil)
     price = convert_to_float(price)
+    return nil if price.nil?
+    return 'bad request' if price < 0
 
     order_by_name
       .find_by('unit_price >= ?', price)
@@ -32,7 +36,7 @@ class Item < ApplicationRecord
     min = convert_to_float(min)
     max = convert_to_float(max)
     return nil if min.nil? || max.nil?
-    return 'bad request' if min > max
+    return 'bad request' if min > max || min < 0 || max < 0
 
     order_by_name
       .find_by('unit_price >= ? and unit_price <= ?', min, max)

@@ -128,6 +128,12 @@ RSpec.describe Item, type: :model do
           expect(Item.find_by_max_price('10ten')).to eq(nil)
         end
       end
+
+      context 'when I provide a negative maximum price' do
+        it 'returns "bad request"' do
+          expect(Item.find_by_max_price(-10)).to eq('bad request')
+        end
+      end
     end
 
     describe '.find_by_min_price' do
@@ -171,6 +177,12 @@ RSpec.describe Item, type: :model do
           expect(Item.find_by_min_price('1one')).to eq(nil)
         end
       end
+
+      context 'when I provide a negative minimum price' do
+        it 'returns "bad request"' do
+          expect(Item.find_by_min_price(-10)).to eq('bad request')
+        end
+      end
     end
 
     describe '.find_by_price_range' do
@@ -212,6 +224,14 @@ RSpec.describe Item, type: :model do
           expect(Item.find_by_price_range('one', 1)).to eq(nil)
           expect(Item.find_by_price_range(1, 'one1')).to eq(nil)
           expect(Item.find_by_price_range('1one', 1)).to eq(nil)
+        end
+      end
+
+      context 'when I provide a negative minimum or maximum price' do
+        it 'returns "bad request"' do
+          expect(Item.find_by_price_range(-10, 5)).to eq('bad request')
+          expect(Item.find_by_price_range(10, -5)).to eq('bad request')
+          expect(Item.find_by_price_range(-10, -5)).to eq('bad request')
         end
       end
 
