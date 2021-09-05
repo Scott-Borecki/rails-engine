@@ -15,24 +15,14 @@ class Item < ApplicationRecord
   end
 
   def self.find_by_max_price(price = nil)
-    price =
-      begin
-        Float(price)
-      rescue ArgumentError
-        nil
-      end
+    price = convert_to_float(price)
 
     order_by_name
       .find_by('unit_price <= ?', price)
   end
 
   def self.find_by_min_price(price = nil)
-    price =
-      begin
-        Float(price)
-      rescue ArgumentError
-        nil
-      end
+    price = convert_to_float(price)
 
     order_by_name
       .find_by('unit_price >= ?', price)
@@ -43,5 +33,16 @@ class Item < ApplicationRecord
 
     order_by_name
       .find_by('name ILIKE ?', "%#{name}%")
+  end
+
+  private
+
+  # HACK: Refactor this into a module and extend module to Item class
+  def self.convert_to_float(number)
+    begin
+      Float(number)
+    rescue ArgumentError
+      nil
+    end
   end
 end

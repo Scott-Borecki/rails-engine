@@ -20,6 +20,44 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'class methods' do
+    describe '.convert_to_float' do
+      context 'when I provide a float string' do
+        it 'returns a float' do
+          expect(Item.convert_to_float('5.25')).to be_a Float
+          expect(Item.convert_to_float('5.25')).to eq(5.25)
+        end
+      end
+
+      context 'when I provide a float' do
+        it 'returns a float' do
+          expect(Item.convert_to_float(5.25)).to be_a Float
+          expect(Item.convert_to_float(5.25)).to eq(5.25)
+        end
+      end
+
+      context 'when I provide an integer string' do
+        it 'returns a float' do
+          expect(Item.convert_to_float('5')).to be_a Float
+          expect(Item.convert_to_float('5')).to eq(5.0)
+        end
+      end
+
+      context 'when I provide an integer' do
+        it 'returns a float' do
+          expect(Item.convert_to_float(5)).to be_a Float
+          expect(Item.convert_to_float(5)).to eq(5.0)
+        end
+      end
+
+      context 'when I provide a non-numeric string' do
+        it 'returns nil' do
+          expect(Item.convert_to_float('one')).to be_nil
+          expect(Item.convert_to_float('one1')).to be_nil
+          expect(Item.convert_to_float('1one')).to be_nil
+        end
+      end
+    end
+
     describe '.order_by_name' do
       let!(:item1) { create(:item, name: 'BaA') } # Asc Order: 2
       let!(:item2) { create(:item, name: 'baa') } # Asc Order: 5
