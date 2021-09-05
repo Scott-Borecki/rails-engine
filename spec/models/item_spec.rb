@@ -49,6 +49,49 @@ RSpec.describe Item, type: :model do
       end
     end
 
+    describe '.find_by_min_price' do
+      let!(:item1) { create(:item, name: 'BaA', unit_price: 6.49) } # Name Asc: 2; Price Desc: 4
+      let!(:item2) { create(:item, name: 'baa', unit_price: 7.39) } # Name Asc: 5; Price Desc: 3
+      let!(:item3) { create(:item, name: 'bAA', unit_price: 9.19) } # Name Asc: 4; Price Desc: 1
+      let!(:item4) { create(:item, name: 'Baa', unit_price: 8.29) } # Name Asc: 3; Price Desc: 2
+      let!(:item5) { create(:item, name: 'BAa', unit_price: 5.59) } # Name Asc: 1; Price Desc: 5
+
+      context 'when I provide a valid minimum price' do
+        context 'when there are items with a unit price more than the minimum price' do
+          it 'returns the item from the results by case-sensitive alphabetical order' do
+            # It accepts a float price
+            expect(Item.find_by_min_price(7.24)).to eq(item4)
+
+            # It accepts a string float price
+            expect(Item.find_by_min_price('7.24')).to eq(item4)
+
+            # It accepts an integer price
+            expect(Item.find_by_min_price(3)).to eq(item5)
+
+            # It accepts a string integer price
+            expect(Item.find_by_min_price('3')).to eq(item5)
+
+            # It evaluates the price as greater than or equal to
+            expect(Item.find_by_min_price(8.29)).to eq(item4)
+          end
+        end
+
+        context 'when there are no items with a unit price more than the minimum price' do
+          it 'returns nil' do
+            expect(Item.find_by_min_price(10)).to eq(nil)
+          end
+        end
+      end
+
+      context 'when I provid an invalid minimum price' do
+        it 'returns nil' do
+          expect(Item.find_by_min_price('ten')).to eq(nil)
+          expect(Item.find_by_min_price('ten10')).to eq(nil)
+          expect(Item.find_by_min_price('10ten')).to eq(nil)
+        end
+      end
+    end
+
     describe '.find_by_name' do
       let!(:item1) { create(:item, name: 'BaA') } # Asc Order: 2
       let!(:item2) { create(:item, name: 'baa') } # Asc Order: 5

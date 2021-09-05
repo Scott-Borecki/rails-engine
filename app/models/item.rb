@@ -14,6 +14,18 @@ class Item < ApplicationRecord
     order(name: order)
   end
 
+  def self.find_by_min_price(price = nil)
+    price =
+      begin
+        Float(price)
+      rescue ArgumentError
+        nil
+      end
+
+    order_by_name
+      .find_by('unit_price >= ?', price)
+  end
+
   def self.find_by_name(name = nil)
     return nil if name.nil?
 
