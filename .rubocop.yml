@@ -91,10 +91,13 @@ Performance/CollectionLiteralInLoop:
   Exclude:
     - 'spec/**/*.rb'
 
-Rake/Desc:
+Rails/DynamicFindBy:
   Enabled: false
 
 Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rake/Desc:
   Enabled: false
 
 RSpec/DescribeClass:
