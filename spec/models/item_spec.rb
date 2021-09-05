@@ -121,7 +121,7 @@ RSpec.describe Item, type: :model do
         end
       end
 
-      context 'when I provid an invalid maximum price' do
+      context 'when I provide an invalid maximum price' do
         it 'returns nil' do
           expect(Item.find_by_max_price('ten')).to eq(nil)
           expect(Item.find_by_max_price('ten10')).to eq(nil)
@@ -164,7 +164,7 @@ RSpec.describe Item, type: :model do
         end
       end
 
-      context 'when I provid an invalid minimum price' do
+      context 'when I provide an invalid minimum price' do
         it 'returns nil' do
           expect(Item.find_by_min_price('one')).to eq(nil)
           expect(Item.find_by_min_price('one1')).to eq(nil)
@@ -207,7 +207,7 @@ RSpec.describe Item, type: :model do
         end
       end
 
-      context 'when I provid an invalid price range' do
+      context 'when I provide an invalid price range with a string' do
         it 'returns nil' do
           expect(Item.find_by_price_range('one', 1)).to eq(nil)
           expect(Item.find_by_price_range(1, 'one1')).to eq(nil)
