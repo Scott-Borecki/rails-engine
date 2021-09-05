@@ -28,6 +28,14 @@ class Item < ApplicationRecord
       .find_by('unit_price >= ?', price)
   end
 
+  def self.find_by_price_range(min = nil, max = nil)
+    min = convert_to_float(min)
+    max = convert_to_float(max)
+
+    order_by_name
+      .find_by('unit_price >= ? and unit_price <= ?', min, max)
+  end
+
   def self.find_by_name(name = nil)
     return nil if name.nil?
 
