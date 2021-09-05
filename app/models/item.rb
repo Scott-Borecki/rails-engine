@@ -9,7 +9,8 @@ class Item < ApplicationRecord
   validates :unit_price, presence: true, numericality: true
 
   def self.order_by_name(order = 'asc')
-    order == 'desc' ? order = 'desc' : order = 'asc'
+    order = 'asc' unless order == 'desc'
+
     order(name: order)
   end
 
