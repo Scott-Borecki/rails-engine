@@ -1,5 +1,5 @@
 class RevenueSerializer
-  def self.format_items_revenue(items)
+  def self.format_items(items)
     {
       data:
         items.map do |item|
@@ -18,7 +18,7 @@ class RevenueSerializer
     }
   end
 
-  def self.format_merchant_revenue(merchant)
+  def self.format_merchant(merchant)
     {
       data:
         {
@@ -31,7 +31,7 @@ class RevenueSerializer
     }
   end
 
-  def self.format_merchants_revenue(merchants)
+  def self.format_merchants(merchants)
     {
       data:
         merchants.map do |merchant|
