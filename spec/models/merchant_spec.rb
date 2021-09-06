@@ -44,7 +44,7 @@ RSpec.describe Merchant, type: :model do
       end
 
       context 'when I provide a parameter other than "desc"' do
-        it 'orders the merchants by name (case-sensitive) in ascending order (default)' do
+        it 'orders the merchants by name (case-sensitive) in ascending order (default)', :aggregate_failures do
           expect(Merchant.order_by_name(123)).to eq(asc)
           expect(Merchant.order_by_name('des')).to eq(asc)
         end
