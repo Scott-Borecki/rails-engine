@@ -28,17 +28,17 @@ RSpec.describe Invoice, type: :model do
         invoice4 = create(:invoice, status: 'returned') # transaction: refunded
         invoice5 = create(:invoice, status: 'shipped')  # transaction: failed
 
-        transaction_i1 = create(:transaction, invoice: invoice1, result: 'success')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'failed')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'success')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'refunded')
-        transaction_i3 = create(:transaction, invoice: invoice3, result: 'failed')
-        transaction_i3 = create(:transaction, invoice: invoice3, result: 'success')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'failed')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'failed')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'success')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'refunded')
-        transaction_i5 = create(:transaction, invoice: invoice5, result: 'failed')
+        create(:transaction, invoice: invoice1, result: 'success')
+        create(:transaction, invoice: invoice2, result: 'failed')
+        create(:transaction, invoice: invoice2, result: 'success')
+        create(:transaction, invoice: invoice2, result: 'refunded')
+        create(:transaction, invoice: invoice3, result: 'failed')
+        create(:transaction, invoice: invoice3, result: 'success')
+        create(:transaction, invoice: invoice4, result: 'failed')
+        create(:transaction, invoice: invoice4, result: 'failed')
+        create(:transaction, invoice: invoice4, result: 'success')
+        create(:transaction, invoice: invoice4, result: 'refunded')
+        create(:transaction, invoice: invoice5, result: 'failed')
 
         expect(Invoice.considered_as_revenue).to eq([invoice2, invoice3])
       end
@@ -52,26 +52,26 @@ RSpec.describe Invoice, type: :model do
         invoice4 = create(:invoice, status: 'returned') # transaction: refunded
         invoice5 = create(:invoice, status: 'shipped')  # transaction: failed
 
-        transaction_i1 = create(:transaction, invoice: invoice1, result: 'success')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'failed')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'success')
-        transaction_i2 = create(:transaction, invoice: invoice2, result: 'refunded')
-        transaction_i3 = create(:transaction, invoice: invoice3, result: 'failed')
-        transaction_i3 = create(:transaction, invoice: invoice3, result: 'success')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'failed')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'failed')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'success')
-        transaction_i4 = create(:transaction, invoice: invoice4, result: 'refunded')
-        transaction_i5 = create(:transaction, invoice: invoice5, result: 'failed')
+        create(:transaction, invoice: invoice1, result: 'success')
+        create(:transaction, invoice: invoice2, result: 'failed')
+        create(:transaction, invoice: invoice2, result: 'success')
+        create(:transaction, invoice: invoice2, result: 'refunded')
+        create(:transaction, invoice: invoice3, result: 'failed')
+        create(:transaction, invoice: invoice3, result: 'success')
+        create(:transaction, invoice: invoice4, result: 'failed')
+        create(:transaction, invoice: invoice4, result: 'failed')
+        create(:transaction, invoice: invoice4, result: 'success')
+        create(:transaction, invoice: invoice4, result: 'refunded')
+        create(:transaction, invoice: invoice5, result: 'failed')
 
-        invoice_item_i1 = create(:invoice_item, invoice: invoice1)
-        invoice_item_i2a = create(:invoice_item, invoice: invoice2, quantity: 15, unit_price: 9.99) # Revenue = 149.85
-        invoice_item_i2b = create(:invoice_item, invoice: invoice2, quantity: 15, unit_price: 9.99) # Revenue = 149.85
-        invoice_item_i3a = create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
-        invoice_item_i3b = create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
-        invoice_item_i3c = create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
-        invoice_item_i4 = create(:invoice_item, invoice: invoice4)
-        invoice_item_i5 = create(:invoice_item, invoice: invoice5)
+        create(:invoice_item, invoice: invoice1)
+        create(:invoice_item, invoice: invoice2, quantity: 15, unit_price: 9.99) # Revenue = 149.85
+        create(:invoice_item, invoice: invoice2, quantity: 15, unit_price: 9.99) # Revenue = 149.85
+        create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
+        create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
+        create(:invoice_item, invoice: invoice3, quantity: 25, unit_price: 8.99) # Revenue = 224.75
+        create(:invoice_item, invoice: invoice4)
+        create(:invoice_item, invoice: invoice5)
 
         expect(Invoice.total_revenue_generated).to eq(973.95)
       end

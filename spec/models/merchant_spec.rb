@@ -78,15 +78,15 @@ RSpec.describe Merchant, type: :model do
     describe '.top_by_items_sold' do
       it 'returns the top merchants by items sold' do
         # See /spec/factories/merchants.rb for #merchant_with_revenue
-        merchant1 = merchant_with_revenue(invoice_items_count: 1)
+        merchant_with_revenue(invoice_items_count: 1) # merchant1
         merchant2 = merchant_with_revenue(invoice_items_count: 6)
         merchant3 = merchant_with_revenue(invoice_items_count: 4)
         merchant4 = merchant_with_revenue(invoice_items_count: 5)
         merchant5 = merchant_with_revenue(invoice_items_count: 3)
         merchant6 = merchant_with_revenue(invoice_items_count: 2)
         # See /spec/factories/merchants.rb for #merchant_without_revenue
-        merchant7 = merchant_without_revenue(invoice_items_count: 7)
-        merchant8 = merchant_without_revenue(invoice_items_count: 8)
+        merchant_without_revenue(invoice_items_count: 7) # merchant7
+        merchant_without_revenue(invoice_items_count: 8) # merchant8
 
         top_five_by_items_sold = [merchant2, merchant4, merchant3, merchant5, merchant6]
         top_three_by_items_sold = [merchant2, merchant4, merchant3]
@@ -111,8 +111,8 @@ RSpec.describe Merchant, type: :model do
         merchant5 = merchant_with_revenue(invoice_items_count: 3)
         merchant6 = merchant_with_revenue(invoice_items_count: 2)
         # See /spec/factories/merchants.rb for #merchant_without_revenue
-        merchant7 = merchant_without_revenue(invoice_items_count: 7)
-        merchant8 = merchant_without_revenue(invoice_items_count: 8)
+        merchant_without_revenue(invoice_items_count: 7) # merchant7
+        merchant_without_revenue(invoice_items_count: 8) # merchant8
 
         top_six_by_revenue = [merchant2, merchant4, merchant3, merchant5, merchant6, merchant1]
         top_three_by_revenue = [merchant2, merchant4, merchant3]

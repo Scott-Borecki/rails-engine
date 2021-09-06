@@ -281,8 +281,8 @@ RSpec.describe Item, type: :model do
           item5 = item_with_revenue(invoice_items_count: 3)
           item6 = item_with_revenue(invoice_items_count: 2)
           # See /spec/factories/items.rb for #item_without_revenue
-          item7 = item_without_revenue(invoice_items_count: 7)
-          item8 = item_without_revenue(invoice_items_count: 8)
+          item_without_revenue(invoice_items_count: 7)
+          item_without_revenue(invoice_items_count: 8)
 
           top_six_by_revenue = [item2, item4, item3, item5, item6, item1]
           top_three_by_revenue = [item2, item4, item3]
