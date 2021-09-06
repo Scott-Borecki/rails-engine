@@ -5,14 +5,14 @@
 #
 # Here's an example for the 'index' action of the Api::V1::MerchantsController:
 #
-# class Api::V1::MerchantsController < ApplicationController
-#   include Pageable
+#     class Api::V1::MerchantsController < ApplicationController
+#       include Pageable
 #
-#   def index
-#     merchants = Merchant.all.offset(offset).limit(per_page)
-#     # ...
-#   end
-# end
+#       def index
+#         merchants = Merchant.all.offset(offset).limit(per_page)
+#         # ...
+#       end
+#     end
 #
 module Pageable
   def page
