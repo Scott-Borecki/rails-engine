@@ -2,10 +2,40 @@ require 'rails_helper'
 
 describe 'MerchantSerializer', type: :serializer do
   describe 'class methods' do
+    describe '.format_merchant' do
+      it 'formats the single merchant response for delivery', :aggregate_failures do
+        merchant = create(:merchant)
+        merchant = MerchantSerializer.format_merchant(merchant)
+
+        expect(merchant).to be_a Hash
+        expect(merchant.size).to eq(1)
+
+        expect(merchant).to have_key(:data)
+
+        merchant_data = merchant[:data]
+
+        expect(merchant_data).to be_a Hash
+        expect(merchant_data.size).to eq(3)
+
+        expect(merchant_data).to have_key(:id)
+        expect(merchant_data[:id]).to be_a String
+
+        expect(merchant_data).to have_key(:type)
+        expect(merchant_data[:type]).to be_a String
+        expect(merchant_data[:type]).to eq('merchant')
+
+        expect(merchant_data).to have_key(:attributes)
+        expect(merchant_data[:attributes]).to be_a Hash
+        expect(merchant_data[:attributes].size).to eq(1)
+
+        expect(merchant_data[:attributes]).to have_key(:name)
+        expect(merchant_data[:attributes][:name]).to be_a String
+      end
+    end
+
     describe '.format_merchants' do
       it 'formats the merchants response for delivery', :aggregate_failures do
         merchants_list = create_list(:merchant, 20)
-
         merchants = MerchantSerializer.format_merchants(merchants_list)
 
         expect(merchants).to be_a Hash
@@ -36,35 +66,41 @@ describe 'MerchantSerializer', type: :serializer do
       end
     end
 
-    describe '.format_merchant' do
-      it 'formats the single merchant response for delivery', :aggregate_failures do
-        merchant = create(:merchant)
+    describe '.format_merchants_items_sold' do
+      it 'formats the merchants items sold response for delivery', :aggregate_failures do
+        # See /spec/factories/merchants.rb for #merchants_with_revenue
+        merchants_with_revenue(20)
+        merchants_list = Merchant.top_by_items_sold(10)
+        merchants = MerchantSerializer.format_merchants_items_sold(merchants_list)
 
-        merchant = MerchantSerializer.format_merchant(merchant)
+        expect(merchants).to be_a Hash
+        expect(merchants.size).to eq(1)
 
-        expect(merchant).to be_a Hash
-        expect(merchant.size).to eq(1)
+        expect(merchants).to have_key(:data)
+        expect(merchants[:data]).to be_an Array
+        expect(merchants[:data].size).to eq(10)
 
-        expect(merchant).to have_key(:data)
+        merchants[:data].each do |merchant|
+          expect(merchant).to be_a Hash
+          expect(merchant.size).to eq(3)
 
-        merchant_data = merchant[:data]
+          expect(merchant).to have_key(:id)
+          expect(merchant[:id]).to be_a String
 
-        expect(merchant_data).to be_a Hash
-        expect(merchant_data.size).to eq(3)
+          expect(merchant).to have_key(:type)
+          expect(merchant[:type]).to be_a String
+          expect(merchant[:type]).to eq('items_sold')
 
-        expect(merchant_data).to have_key(:id)
-        expect(merchant_data[:id]).to be_a String
+          expect(merchant).to have_key(:attributes)
+          expect(merchant[:attributes]).to be_a Hash
+          expect(merchant[:attributes].size).to eq(2)
 
-        expect(merchant_data).to have_key(:type)
-        expect(merchant_data[:type]).to be_a String
-        expect(merchant_data[:type]).to eq('merchant')
+          expect(merchant[:attributes]).to have_key(:name)
+          expect(merchant[:attributes][:name]).to be_a String
 
-        expect(merchant_data).to have_key(:attributes)
-        expect(merchant_data[:attributes]).to be_a Hash
-        expect(merchant_data[:attributes].size).to eq(1)
-
-        expect(merchant_data[:attributes]).to have_key(:name)
-        expect(merchant_data[:attributes][:name]).to be_a String
+          expect(merchant[:attributes]).to have_key(:count)
+          expect(merchant[:attributes][:count]).to be_an Integer
+        end
       end
     end
   end
