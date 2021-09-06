@@ -14,3 +14,7 @@ def merchant_with_revenue(invoice_items_count: 4)
     end
   end
 end
+
+def merchants_with_revenue(quantity)
+  quantity.times { merchant_with_revenue }
+end
