@@ -1,9 +1,11 @@
 class Api::V1::Revenue::MerchantsController < ApplicationController
   def index
-    if params[:quantity].present? && convert_to_float(params[:quantity]).positive?
+    if params[:quantity].present? &&
+       convert_to_float(params[:quantity]).positive?
+    then
       merchants = Merchant.top_by_revenue(params[:quantity])
-      formatted_merchants = RevenueSerializer.format_merchants_revenue(merchants)
-      json_response(formatted_merchants)
+      formatted = RevenueSerializer.format_merchants_revenue(merchants)
+      json_response(formatted)
     else
       bad_request
     end
