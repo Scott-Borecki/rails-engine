@@ -75,6 +75,30 @@ RSpec.describe Merchant, type: :model do
       end
     end
 
+    describe '.top_by_items_sold' do
+      it 'returns the top merchants by items sold' do
+        merchant1 = merchant_with_revenue(invoice_items_count: 1)
+        merchant2 = merchant_with_revenue(invoice_items_count: 6)
+        merchant3 = merchant_with_revenue(invoice_items_count: 4)
+        merchant4 = merchant_with_revenue(invoice_items_count: 5)
+        merchant5 = merchant_with_revenue(invoice_items_count: 3)
+        merchant6 = merchant_with_revenue(invoice_items_count: 2)
+        merchant7 = merchant_without_revenue(invoice_items_count: 7)
+        merchant8 = merchant_without_revenue(invoice_items_count: 8)
+
+        top_five_by_items_sold = [merchant2, merchant4, merchant3, merchant5, merchant6]
+        top_three_by_items_sold = [merchant2, merchant4, merchant3]
+
+        actual = Merchant.top_by_items_sold
+        expect(actual.length).to eq(5)
+        expect(actual).to eq(top_five_by_items_sold)
+
+        actual = Merchant.top_by_items_sold(3)
+        expect(actual.length).to eq(3)
+        expect(actual).to eq(top_three_by_items_sold)
+      end
+    end
+
     describe '.top_by_revenue' do
       it 'returns the top merchants by revenue', :aggregate_failures do
         merchant1 = merchant_with_revenue(invoice_items_count: 1)

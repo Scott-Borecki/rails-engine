@@ -20,6 +20,16 @@ class Merchant < ApplicationRecord
       .order_by_name
   end
 
+  def self.top_by_items_sold(quantity = 5)
+    joins(invoices: :invoice_items)
+      .merge(Invoice.considered_as_revenue)
+      .select('merchants.*,
+               SUM(invoice_items.quantity) AS total_sold')
+      .group(:id)
+      .order(total_sold: :desc)
+      .limit(quantity)
+  end
+
   def self.top_by_revenue(quantity)
     joins(invoices: :invoice_items)
       .merge(Invoice.considered_as_revenue)
