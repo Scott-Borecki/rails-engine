@@ -20,50 +20,13 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'class methods' do
-    describe '.convert_to_float' do
-      context 'when I provide a float string' do
-        it 'returns a float' do
-          expect(Item.convert_to_float('5.25')).to be_a Float
-          expect(Item.convert_to_float('5.25')).to eq(5.25)
-        end
-      end
-
-      context 'when I provide a float' do
-        it 'returns a float' do
-          expect(Item.convert_to_float(5.25)).to be_a Float
-          expect(Item.convert_to_float(5.25)).to eq(5.25)
-        end
-      end
-
-      context 'when I provide an integer string' do
-        it 'returns a float' do
-          expect(Item.convert_to_float('5')).to be_a Float
-          expect(Item.convert_to_float('5')).to eq(5.0)
-        end
-      end
-
-      context 'when I provide an integer' do
-        it 'returns a float' do
-          expect(Item.convert_to_float(5)).to be_a Float
-          expect(Item.convert_to_float(5)).to eq(5.0)
-        end
-      end
-
-      context 'when I provide a non-numeric string' do
-        it 'returns nil' do
-          expect(Item.convert_to_float('one')).to be_nil
-          expect(Item.convert_to_float('one1')).to be_nil
-          expect(Item.convert_to_float('1one')).to be_nil
-        end
-      end
-    end
-
     describe '.order_by_name' do
       let!(:item1) { create(:item, name: 'BaA') } # Asc Order: 2
       let!(:item2) { create(:item, name: 'baa') } # Asc Order: 5
       let!(:item3) { create(:item, name: 'bAA') } # Asc Order: 4
       let!(:item4) { create(:item, name: 'Baa') } # Asc Order: 3
       let!(:item5) { create(:item, name: 'BAa') } # Asc Order: 1
+
       let(:asc) { [item5, item1, item4, item3, item2] }
       let(:desc) { [item2, item3, item4, item1, item5] }
 
@@ -80,7 +43,7 @@ RSpec.describe Item, type: :model do
       end
 
       context 'when I provide a parameter other than "desc"' do
-        it 'orders the items by name (case-sensitive) in ascending order (default)' do
+        it 'orders the items by name (case-sensitive) in ascending order (default)', :aggregate_failures do
           expect(Item.order_by_name(123)).to eq(asc)
           expect(Item.order_by_name('des')).to eq(asc)
         end
@@ -96,19 +59,15 @@ RSpec.describe Item, type: :model do
 
       context 'when I provide a valid maximum price' do
         context 'when there are items with a unit price less than the maximum price' do
-          it 'returns the item from the results by case-sensitive alphabetical order' do
+          it 'returns the first item by case-sensitive alphabetical order', :aggregate_failures do
             # It accepts a float price
             expect(Item.find_by_max_price(7.24)).to eq(item5)
-
             # It accepts a string float price
             expect(Item.find_by_max_price('7.24')).to eq(item5)
-
             # It accepts an integer price
             expect(Item.find_by_max_price(6)).to eq(item1)
-
             # It accepts a string integer price
             expect(Item.find_by_max_price('6')).to eq(item1)
-
             # It evaluates the price as less than or equal to
             expect(Item.find_by_max_price(5.25)).to eq(item1)
           end
@@ -122,7 +81,7 @@ RSpec.describe Item, type: :model do
       end
 
       context 'when I provide an invalid maximum price' do
-        it 'returns nil' do
+        it 'returns nil', :aggregate_failures do
           expect(Item.find_by_max_price('ten')).to eq(nil)
           expect(Item.find_by_max_price('ten10')).to eq(nil)
           expect(Item.find_by_max_price('10ten')).to eq(nil)
@@ -145,19 +104,15 @@ RSpec.describe Item, type: :model do
 
       context 'when I provide a valid minimum price' do
         context 'when there are items with a unit price more than the minimum price' do
-          it 'returns the item from the results by case-sensitive alphabetical order' do
+          it 'returns the first item by case-sensitive alphabetical order', :aggregate_failures do
             # It accepts a float price
             expect(Item.find_by_min_price(7.24)).to eq(item4)
-
             # It accepts a string float price
             expect(Item.find_by_min_price('7.24')).to eq(item4)
-
             # It accepts an integer price
             expect(Item.find_by_min_price(3)).to eq(item5)
-
             # It accepts a string integer price
             expect(Item.find_by_min_price('3')).to eq(item5)
-
             # It evaluates the price as greater than or equal to
             expect(Item.find_by_min_price(8.32)).to eq(item4)
           end
@@ -171,7 +126,7 @@ RSpec.describe Item, type: :model do
       end
 
       context 'when I provide an invalid minimum price' do
-        it 'returns nil' do
+        it 'returns nil', :aggregate_failures do
           expect(Item.find_by_min_price('one')).to eq(nil)
           expect(Item.find_by_min_price('one1')).to eq(nil)
           expect(Item.find_by_min_price('1one')).to eq(nil)
@@ -194,19 +149,15 @@ RSpec.describe Item, type: :model do
 
       context 'when I provide a valid price range' do
         context 'when there are items within the price range' do
-          it 'returns the item from the results by case-sensitive alphabetical order' do
+          it 'returns the first item by case-sensitive alphabetical order', :aggregate_failures do
             # It accepts a float price
             expect(Item.find_by_price_range(7.24, 9.99)).to eq(item4)
-
             # It accepts a string float price
             expect(Item.find_by_price_range('7.24', '9.99')).to eq(item4)
-
             # It accepts an integer price
             expect(Item.find_by_price_range(3, 7)).to eq(item5)
-
             # It accepts a string integer price
             expect(Item.find_by_price_range('3', '7')).to eq(item5)
-
             # It evaluates the price as greater/less than or equal to
             expect(Item.find_by_price_range(7.53, 8.32)).to eq(item4)
           end
@@ -220,7 +171,7 @@ RSpec.describe Item, type: :model do
       end
 
       context 'when I provide an invalid price range with a string' do
-        it 'returns nil' do
+        it 'returns nil', :aggregate_failures do
           expect(Item.find_by_price_range('one', 1)).to eq(nil)
           expect(Item.find_by_price_range(1, 'one1')).to eq(nil)
           expect(Item.find_by_price_range('1one', 1)).to eq(nil)
@@ -228,7 +179,7 @@ RSpec.describe Item, type: :model do
       end
 
       context 'when I provide a negative minimum or maximum price' do
-        it 'returns "bad request"' do
+        it 'returns "bad request"', :aggregate_failures do
           expect(Item.find_by_price_range(-10, 5)).to eq('bad request')
           expect(Item.find_by_price_range(10, -5)).to eq('bad request')
           expect(Item.find_by_price_range(-10, -5)).to eq('bad request')
@@ -251,7 +202,7 @@ RSpec.describe Item, type: :model do
 
       context 'when I provide a valid search string' do
         context 'when there are items with a partial match' do
-          it 'returns the first item with partial match in case-sensitive alphabetical order' do
+          it 'returns the first item by case-sensitive alphabetical order' do
             expect(Item.find_by_name('aA')).to eq(item5)
           end
         end
@@ -272,21 +223,23 @@ RSpec.describe Item, type: :model do
 
     describe '.top_by_revenue' do
       context 'when I provide a quantity' do
+        # See /spec/factories/items.rb for:
+        #   #item_with_revenue
+        #   #item_without_revenue
+        #
+        let!(:item1) { item_with_revenue(invoice_items_count: 1) }
+        let!(:item2) { item_with_revenue(invoice_items_count: 6) }
+        let!(:item3) { item_with_revenue(invoice_items_count: 4) }
+        let!(:item4) { item_with_revenue(invoice_items_count: 5) }
+        let!(:item5) { item_with_revenue(invoice_items_count: 3) }
+        let!(:item6) { item_with_revenue(invoice_items_count: 2) }
+        let!(:item7) { item_without_revenue(invoice_items_count: 7) }
+        let!(:item8) { item_without_revenue(invoice_items_count: 8) }
+
+        let(:top_six_by_revenue) { [item2, item4, item3, item5, item6, item1] }
+        let(:top_three_by_revenue) { [item2, item4, item3] }
+
         it 'returns the top items by revenue', :aggregate_failures do
-          # See /spec/factories/items.rb for #item_with_revenue
-          item1 = item_with_revenue(invoice_items_count: 1)
-          item2 = item_with_revenue(invoice_items_count: 6)
-          item3 = item_with_revenue(invoice_items_count: 4)
-          item4 = item_with_revenue(invoice_items_count: 5)
-          item5 = item_with_revenue(invoice_items_count: 3)
-          item6 = item_with_revenue(invoice_items_count: 2)
-          # See /spec/factories/items.rb for #item_without_revenue
-          item_without_revenue(invoice_items_count: 7)
-          item_without_revenue(invoice_items_count: 8)
-
-          top_six_by_revenue = [item2, item4, item3, item5, item6, item1]
-          top_three_by_revenue = [item2, item4, item3]
-
           actual = Item.top_by_revenue(6)
           expect(actual.length).to eq(6)
           expect(actual).to eq(top_six_by_revenue)
@@ -307,6 +260,46 @@ RSpec.describe Item, type: :model do
 
           comparison = actual.first.total_revenue > actual.last.total_revenue
           expect(comparison).to be true
+        end
+      end
+    end
+  end
+
+  describe 'inherited class methods' do
+    describe '.convert_to_float' do
+      context 'when I provide a float string' do
+        it 'returns a float', :aggregate_failures do
+          expect(Item.convert_to_float('5.25')).to be_a Float
+          expect(Item.convert_to_float('5.25')).to eq(5.25)
+        end
+      end
+
+      context 'when I provide a float' do
+        it 'returns a float', :aggregate_failures do
+          expect(Item.convert_to_float(5.25)).to be_a Float
+          expect(Item.convert_to_float(5.25)).to eq(5.25)
+        end
+      end
+
+      context 'when I provide an integer string' do
+        it 'returns a float', :aggregate_failures do
+          expect(Item.convert_to_float('5')).to be_a Float
+          expect(Item.convert_to_float('5')).to eq(5.0)
+        end
+      end
+
+      context 'when I provide an integer' do
+        it 'returns a float', :aggregate_failures do
+          expect(Item.convert_to_float(5)).to be_a Float
+          expect(Item.convert_to_float(5)).to eq(5.0)
+        end
+      end
+
+      context 'when I provide a non-numeric string' do
+        it 'returns nil', :aggregate_failures do
+          expect(Item.convert_to_float('one')).to be_nil
+          expect(Item.convert_to_float('one1')).to be_nil
+          expect(Item.convert_to_float('1one')).to be_nil
         end
       end
     end

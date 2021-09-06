@@ -21,13 +21,13 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'class methods' do
-    let!(:merchant1) { create(:merchant, name: 'BaA') } # Asc Order: 2
-    let!(:merchant2) { create(:merchant, name: 'bac') } # Asc Order: 5
-    let!(:merchant3) { create(:merchant, name: 'bAA') } # Asc Order: 4
-    let!(:merchant4) { create(:merchant, name: 'Bab') } # Asc Order: 3
-    let!(:merchant5) { create(:merchant, name: 'BAa') } # Asc Order: 1
-
     describe '.order_by_name' do
+      let!(:merchant1) { create(:merchant, name: 'BaA') } # Asc Order: 2
+      let!(:merchant2) { create(:merchant, name: 'bac') } # Asc Order: 5
+      let!(:merchant3) { create(:merchant, name: 'bAA') } # Asc Order: 4
+      let!(:merchant4) { create(:merchant, name: 'Bab') } # Asc Order: 3
+      let!(:merchant5) { create(:merchant, name: 'BAa') } # Asc Order: 1
+
       let(:asc) { [merchant5, merchant1, merchant4, merchant3, merchant2] }
       let(:desc) { [merchant2, merchant3, merchant4, merchant1, merchant5] }
 
@@ -52,6 +52,12 @@ RSpec.describe Merchant, type: :model do
     end
 
     describe '.find_all_by_name' do
+      let!(:merchant1) { create(:merchant, name: 'BaA') } # Asc Order: 2
+      let!(:merchant2) { create(:merchant, name: 'bac') } # Asc Order: 5
+      let!(:merchant3) { create(:merchant, name: 'bAA') } # Asc Order: 4
+      let!(:merchant4) { create(:merchant, name: 'Bab') } # Asc Order: 3
+      let!(:merchant5) { create(:merchant, name: 'BAa') } # Asc Order: 1
+
       let(:merchants_aa) { [merchant5, merchant1, merchant3] }
 
       context 'when I provide a valid search string' do
@@ -76,21 +82,23 @@ RSpec.describe Merchant, type: :model do
     end
 
     describe '.top_by_items_sold' do
-      it 'returns the top merchants by items sold' do
-        # See /spec/factories/merchants.rb for #merchant_with_revenue
-        merchant_with_revenue(invoice_items_count: 1) # merchant1
-        merchant2 = merchant_with_revenue(invoice_items_count: 6)
-        merchant3 = merchant_with_revenue(invoice_items_count: 4)
-        merchant4 = merchant_with_revenue(invoice_items_count: 5)
-        merchant5 = merchant_with_revenue(invoice_items_count: 3)
-        merchant6 = merchant_with_revenue(invoice_items_count: 2)
-        # See /spec/factories/merchants.rb for #merchant_without_revenue
-        merchant_without_revenue(invoice_items_count: 7) # merchant7
-        merchant_without_revenue(invoice_items_count: 8) # merchant8
+      # See /spec/factories/merchants.rb for:
+      #   #merchant_with_revenue
+      #   #merchant_without_revenue
+      #
+      let!(:merchant1) { merchant_with_revenue(invoice_items_count: 1) }
+      let!(:merchant2) { merchant_with_revenue(invoice_items_count: 6) }
+      let!(:merchant3) { merchant_with_revenue(invoice_items_count: 4) }
+      let!(:merchant4) { merchant_with_revenue(invoice_items_count: 5) }
+      let!(:merchant5) { merchant_with_revenue(invoice_items_count: 3) }
+      let!(:merchant6) { merchant_with_revenue(invoice_items_count: 2) }
+      let!(:merchant7) { merchant_without_revenue(invoice_items_count: 7) }
+      let!(:merchant8) { merchant_without_revenue(invoice_items_count: 8) }
 
-        top_five_by_items_sold = [merchant2, merchant4, merchant3, merchant5, merchant6]
-        top_three_by_items_sold = [merchant2, merchant4, merchant3]
+      let(:top_five_by_items_sold) { [merchant2, merchant4, merchant3, merchant5, merchant6] }
+      let(:top_three_by_items_sold) { [merchant2, merchant4, merchant3] }
 
+      it 'returns the top merchants by items sold', :aggregate_failures do
         actual = Merchant.top_by_items_sold
         expect(actual.length).to eq(5)
         expect(actual).to eq(top_five_by_items_sold)
@@ -102,21 +110,23 @@ RSpec.describe Merchant, type: :model do
     end
 
     describe '.top_by_revenue' do
+      # See /spec/factories/merchants.rb for:
+      #   #merchant_with_revenue
+      #   #merchant_without_revenue
+      #
+      let!(:merchant1) { merchant_with_revenue(invoice_items_count: 1) }
+      let!(:merchant2) { merchant_with_revenue(invoice_items_count: 6) }
+      let!(:merchant3) { merchant_with_revenue(invoice_items_count: 4) }
+      let!(:merchant4) { merchant_with_revenue(invoice_items_count: 5) }
+      let!(:merchant5) { merchant_with_revenue(invoice_items_count: 3) }
+      let!(:merchant6) { merchant_with_revenue(invoice_items_count: 2) }
+      let!(:merchant7) { merchant_without_revenue(invoice_items_count: 7) }
+      let!(:merchant8) { merchant_without_revenue(invoice_items_count: 8) }
+
+      let(:top_six_by_revenue) { [merchant2, merchant4, merchant3, merchant5, merchant6, merchant1] }
+      let(:top_three_by_revenue) { [merchant2, merchant4, merchant3] }
+
       it 'returns the top merchants by revenue', :aggregate_failures do
-        # See /spec/factories/merchants.rb for #merchant_with_revenue
-        merchant1 = merchant_with_revenue(invoice_items_count: 1)
-        merchant2 = merchant_with_revenue(invoice_items_count: 6)
-        merchant3 = merchant_with_revenue(invoice_items_count: 4)
-        merchant4 = merchant_with_revenue(invoice_items_count: 5)
-        merchant5 = merchant_with_revenue(invoice_items_count: 3)
-        merchant6 = merchant_with_revenue(invoice_items_count: 2)
-        # See /spec/factories/merchants.rb for #merchant_without_revenue
-        merchant_without_revenue(invoice_items_count: 7) # merchant7
-        merchant_without_revenue(invoice_items_count: 8) # merchant8
-
-        top_six_by_revenue = [merchant2, merchant4, merchant3, merchant5, merchant6, merchant1]
-        top_three_by_revenue = [merchant2, merchant4, merchant3]
-
         actual = Merchant.top_by_revenue(6)
         expect(actual.length).to eq(6)
         expect(actual).to eq(top_six_by_revenue)

@@ -8,12 +8,13 @@ describe 'Items Find API', type: :request do
       let!(:item3) { create(:item, name: 'bAA', unit_price: 9.41) } # Name Asc: 4; Price Desc: 1
       let!(:item4) { create(:item, name: 'Baa', unit_price: 8.32) } # Name Asc: 3; Price Desc: 2
       let!(:item5) { create(:item, name: 'BAa', unit_price: 6.14) } # Name Asc: 1; Price Desc: 4
+
       let(:first_item_by_name) { item5 }
 
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/items/find' }
 
-        it 'returns a jSON object with an error' do
+        it 'returns a jSON object with an error', :aggregate_failures do
           expect(json).to have_key(:error)
           expect(json[:error]).to be_nil
         end
@@ -26,7 +27,7 @@ describe 'Items Find API', type: :request do
       context 'when I provide an empty query parameter' do
         before { get '/api/v1/items/find?name=' }
 
-        it 'returns a jSON object with an error' do
+        it 'returns a jSON object with an error', :aggregate_failures do
           expect(json).to have_key(:error)
           expect(json[:error]).to be_nil
         end
@@ -81,7 +82,7 @@ describe 'Items Find API', type: :request do
         context 'when I use a negative minimum price' do
           before { get '/api/v1/items/find?min_price=-10' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
@@ -123,7 +124,7 @@ describe 'Items Find API', type: :request do
         context 'when I use a negative maximum price' do
           before { get '/api/v1/items/find?max_price=-10' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
@@ -138,7 +139,7 @@ describe 'Items Find API', type: :request do
         context 'when there are items in the price range' do
           before { get '/api/v1/items/find?max_price=10&min_price=7' }
 
-          it 'returns the first item within the min/max price range by case-sensitive alphabetical order', :aggregate_failures do
+          it 'returns the first item within the price range by case-sensitive alphabetical order', :aggregate_failures do
             expect(json).not_to be_empty
             expect(json_data.size).to eq(3)
             expect(json_data[:id]).to eq(item4.id.to_s)
@@ -165,7 +166,7 @@ describe 'Items Find API', type: :request do
         context 'when the minimum price is greater than the maximum price' do
           before { get '/api/v1/items/find?max_price=1&min_price=10' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
@@ -176,7 +177,7 @@ describe 'Items Find API', type: :request do
         end
 
         context 'when I use a negative minimum or maximum price' do
-          it 'returns status code 400: bad request' do
+          it 'returns status code 400: bad request', :aggregate_failures do
             get '/api/v1/items/find?max_price=-1&min_price=10'
             expect(response).to have_http_status(:bad_request)
 
@@ -193,7 +194,7 @@ describe 'Items Find API', type: :request do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&max_price=150&min_price=10' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
@@ -208,7 +209,7 @@ describe 'Items Find API', type: :request do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&min_price=10' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
@@ -223,7 +224,7 @@ describe 'Items Find API', type: :request do
         context 'when I use valid parameters' do
           before { get '/api/v1/items/find?name=aa&max_price=100' }
 
-          it 'returns a jSON object with an error' do
+          it 'returns a jSON object with an error', :aggregate_failures do
             expect(json).to have_key(:error)
             expect(json[:error]).to be_nil
           end
