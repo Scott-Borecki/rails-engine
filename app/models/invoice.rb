@@ -14,4 +14,10 @@ class Invoice < ApplicationRecord
       .where(invoices: { status: 'shipped' },
              transactions: { result: 'success' })
   end
+
+  def self.total_revenue_generated
+    considered_as_revenue
+      .joins(:invoice_items)
+      .sum('invoice_items.quantity * invoice_items.unit_price')
+  end
 end
