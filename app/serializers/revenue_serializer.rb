@@ -11,4 +11,20 @@ class RevenueSerializer
         }
     }
   end
+
+  def self.format_merchants_revenue(merchants)
+    {
+      data:
+        merchants.map do |merchant|
+          {
+            id: merchant.id.to_s,
+            type: 'merchant_name_revenue',
+            attributes: {
+              name: merchant.name,
+              revenue: merchant.total_revenue_generated
+            }
+          }
+        end
+    }
+  end
 end
