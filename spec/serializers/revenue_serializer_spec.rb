@@ -40,7 +40,8 @@ describe 'RevenueSerializer', type: :serializer do
       it 'formats the merchants response for delivery', :aggregate_failures do
         # See /spec/factories/merchants.rb for #merchants_with_revenue
         merchants_with_revenue(15)
-        merchants_revenue = RevenueSerializer.format_merchants_revenue(Merchant.all)
+        merchants = Merchant.top_by_revenue(15)
+        merchants_revenue = RevenueSerializer.format_merchants_revenue(merchants)
 
         expect(merchants_revenue).to be_a Hash
         expect(merchants_revenue.size).to eq(1)
@@ -71,28 +72,13 @@ describe 'RevenueSerializer', type: :serializer do
           expect(merchant_revenue[:attributes][:revenue]).to be_a Float
         end
 
-        expect(merchants_revenue[:data].first).to be_a Hash
-        expect(merchants_revenue[:data].first.size).to eq(3)
+        first_merchant = merchants.first
+        first_merchant_data = merchants_revenue[:data].first
+        first_merchant_attrs = first_merchant_data[:attributes]
 
-        expect(merchants_revenue[:data].first).to have_key(:id)
-        expect(merchants_revenue[:data].first[:id]).to be_a String
-        expect(merchants_revenue[:data].first[:id]).to eq(Merchant.first.id.to_s)
-
-        expect(merchants_revenue[:data].first).to have_key(:type)
-        expect(merchants_revenue[:data].first[:type]).to be_a String
-        expect(merchants_revenue[:data].first[:type]).to eq('merchant_name_revenue')
-
-        expect(merchants_revenue[:data].first).to have_key(:attributes)
-        expect(merchants_revenue[:data].first[:attributes]).to be_a Hash
-        expect(merchants_revenue[:data].first[:attributes].size).to eq(2)
-
-        expect(merchants_revenue[:data].first[:attributes]).to have_key(:name)
-        expect(merchants_revenue[:data].first[:attributes][:name]).to be_a String
-        expect(merchants_revenue[:data].first[:attributes][:name]).to eq(Merchant.first.name)
-
-        expect(merchants_revenue[:data].first[:attributes]).to have_key(:revenue)
-        expect(merchants_revenue[:data].first[:attributes][:revenue]).to be_a Float
-        expect(merchants_revenue[:data].first[:attributes][:revenue]).to eq(Merchant.first.total_revenue_generated)
+        expect(first_merchant_data[:id]).to eq(first_merchant.id.to_s)
+        expect(first_merchant_attrs[:name]).to eq(first_merchant.name)
+        expect(first_merchant_attrs[:revenue]).to eq(first_merchant.total_revenue)
       end
     end
   end

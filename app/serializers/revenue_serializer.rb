@@ -21,7 +21,7 @@ class RevenueSerializer
             type: 'merchant_name_revenue',
             attributes: {
               name: merchant.name,
-              revenue: merchant.total_revenue_generated
+              revenue: merchant.total_revenue
             }
           }
         end
