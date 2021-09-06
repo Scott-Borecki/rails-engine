@@ -8,7 +8,7 @@ class ItemSerializer
           items.map do |item|
             {
               id: item.id.to_s,
-              type: item.class.name.demodulize.downcase,
+              type: 'item',
               attributes: {
                 name: item.name,
                 description: item.description,
@@ -29,7 +29,7 @@ class ItemSerializer
         else
           {
             id: item.id.to_s,
-            type: item.class.name.demodulize.downcase,
+            type: 'item',
             attributes: {
               name: item.name,
               description: item.description,
