@@ -19,4 +19,14 @@ class Merchant < ApplicationRecord
     where('name ILIKE ?', "%#{name}%")
       .order_by_name
   end
+
+  def self.top_by_revenue(quantity)
+    joins(invoices: :invoice_items)
+      .merge(Invoice.considered_as_revenue)
+      .select('merchants.*,
+               SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue')
+      .group(:id)
+      .order(total_revenue: :desc)
+      .limit(quantity)
+  end
 end
