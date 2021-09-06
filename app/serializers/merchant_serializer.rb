@@ -1,4 +1,17 @@
 class MerchantSerializer
+  def self.format_merchant(merchant)
+    {
+      data:
+      {
+        id: merchant.id.to_s,
+        type: merchant.class.name.demodulize.downcase,
+        attributes: {
+          name: merchant.name
+        }
+      }
+    }
+  end
+
   def self.format_merchants(merchants)
     {
       data:
@@ -14,16 +27,19 @@ class MerchantSerializer
     }
   end
 
-  def self.format_merchant(merchant)
+  def self.format_merchants_items_sold(merchants)
     {
       data:
-        {
-          id: merchant.id.to_s,
-          type: merchant.class.name.demodulize.downcase,
-          attributes: {
-            name: merchant.name
+        merchants.map do |merchant|
+          {
+            id: merchant.id.to_s,
+            type: 'items_sold',
+            attributes: {
+              name: merchant.name,
+              count: merchant.total_sold
+            }
           }
-        }
+        end
     }
   end
 end

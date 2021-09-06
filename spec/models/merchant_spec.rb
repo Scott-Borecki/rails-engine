@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
   describe 'relationships' do
+    it { should have_many(:invoices).dependent(:destroy) }
     it { should have_many(:items).dependent(:destroy) }
     it { should have_many(:invoice_items).through(:items) }
+  end
+
+  describe 'delegations' do
+    it { should delegate_method(:total_revenue_generated).to(:invoices) }
   end
 
   describe 'validations' do
@@ -39,7 +44,7 @@ RSpec.describe Merchant, type: :model do
       end
 
       context 'when I provide a parameter other than "desc"' do
-        it 'orders the merchants by name (case-sensitive) in ascending order (default)' do
+        it 'orders the merchants by name (case-sensitive) in ascending order (default)', :aggregate_failures do
           expect(Merchant.order_by_name(123)).to eq(asc)
           expect(Merchant.order_by_name('des')).to eq(asc)
         end
@@ -67,6 +72,58 @@ RSpec.describe Merchant, type: :model do
         it 'returns nil' do
           expect(Merchant.find_all_by_name).to be_nil
         end
+      end
+    end
+
+    describe '.top_by_items_sold' do
+      it 'returns the top merchants by items sold' do
+        # See /spec/factories/merchants.rb for #merchant_with_revenue
+        merchant_with_revenue(invoice_items_count: 1) # merchant1
+        merchant2 = merchant_with_revenue(invoice_items_count: 6)
+        merchant3 = merchant_with_revenue(invoice_items_count: 4)
+        merchant4 = merchant_with_revenue(invoice_items_count: 5)
+        merchant5 = merchant_with_revenue(invoice_items_count: 3)
+        merchant6 = merchant_with_revenue(invoice_items_count: 2)
+        # See /spec/factories/merchants.rb for #merchant_without_revenue
+        merchant_without_revenue(invoice_items_count: 7) # merchant7
+        merchant_without_revenue(invoice_items_count: 8) # merchant8
+
+        top_five_by_items_sold = [merchant2, merchant4, merchant3, merchant5, merchant6]
+        top_three_by_items_sold = [merchant2, merchant4, merchant3]
+
+        actual = Merchant.top_by_items_sold
+        expect(actual.length).to eq(5)
+        expect(actual).to eq(top_five_by_items_sold)
+
+        actual = Merchant.top_by_items_sold(3)
+        expect(actual.length).to eq(3)
+        expect(actual).to eq(top_three_by_items_sold)
+      end
+    end
+
+    describe '.top_by_revenue' do
+      it 'returns the top merchants by revenue', :aggregate_failures do
+        # See /spec/factories/merchants.rb for #merchant_with_revenue
+        merchant1 = merchant_with_revenue(invoice_items_count: 1)
+        merchant2 = merchant_with_revenue(invoice_items_count: 6)
+        merchant3 = merchant_with_revenue(invoice_items_count: 4)
+        merchant4 = merchant_with_revenue(invoice_items_count: 5)
+        merchant5 = merchant_with_revenue(invoice_items_count: 3)
+        merchant6 = merchant_with_revenue(invoice_items_count: 2)
+        # See /spec/factories/merchants.rb for #merchant_without_revenue
+        merchant_without_revenue(invoice_items_count: 7) # merchant7
+        merchant_without_revenue(invoice_items_count: 8) # merchant8
+
+        top_six_by_revenue = [merchant2, merchant4, merchant3, merchant5, merchant6, merchant1]
+        top_three_by_revenue = [merchant2, merchant4, merchant3]
+
+        actual = Merchant.top_by_revenue(6)
+        expect(actual.length).to eq(6)
+        expect(actual).to eq(top_six_by_revenue)
+
+        actual = Merchant.top_by_revenue(3)
+        expect(actual.length).to eq(3)
+        expect(actual).to eq(top_three_by_revenue)
       end
     end
   end

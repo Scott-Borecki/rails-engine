@@ -142,6 +142,9 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/MultilineIfThen:
+  Enabled: false
+
 Style/SafeNavigation:
   Enabled: false
 

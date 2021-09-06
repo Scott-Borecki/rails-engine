@@ -5,4 +5,9 @@ FactoryBot.define do
     invoice
     item
   end
+
+  factory :invoice_item_fixed, parent: :invoice_item do
+    quantity { 1 }
+    unit_price { 1.50 }
+  end
 end
