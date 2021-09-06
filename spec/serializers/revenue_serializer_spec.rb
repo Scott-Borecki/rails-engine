@@ -36,6 +36,64 @@ describe 'RevenueSerializer', type: :serializer do
       end
     end
 
+    describe '.format_items_revenue' do
+      it 'formats the items response for delivery', :aggregate_failures do
+        # See /spec/factories/items.rb for #items_with_random_revenue
+        items_with_random_revenue(15)
+        items = Item.top_by_revenue(15)
+        items_revenue = RevenueSerializer.format_items_revenue(items)
+
+        expect(items_revenue).to be_a Hash
+        expect(items_revenue.size).to eq(1)
+
+        expect(items_revenue).to have_key(:data)
+        expect(items_revenue[:data]).to be_an Array
+        expect(items_revenue[:data].size).to eq(15)
+
+        items_revenue[:data].each do |item_revenue|
+          expect(item_revenue).to be_a Hash
+          expect(item_revenue.size).to eq(3)
+
+          expect(item_revenue).to have_key(:id)
+          expect(item_revenue[:id]).to be_a String
+
+          expect(item_revenue).to have_key(:type)
+          expect(item_revenue[:type]).to be_a String
+          expect(item_revenue[:type]).to eq('item_revenue')
+
+          expect(item_revenue).to have_key(:attributes)
+          expect(item_revenue[:attributes]).to be_a Hash
+          expect(item_revenue[:attributes].size).to eq(5)
+
+          expect(item_revenue[:attributes]).to have_key(:name)
+          expect(item_revenue[:attributes][:name]).to be_a String
+
+          expect(item_revenue[:attributes]).to have_key(:description)
+          expect(item_revenue[:attributes][:description]).to be_a String
+
+          expect(item_revenue[:attributes]).to have_key(:unit_price)
+          expect(item_revenue[:attributes][:unit_price]).to be_a Float
+
+          expect(item_revenue[:attributes]).to have_key(:merchant_id)
+          expect(item_revenue[:attributes][:merchant_id]).to be_an Integer
+
+          expect(item_revenue[:attributes]).to have_key(:revenue)
+          expect(item_revenue[:attributes][:revenue]).to be_a Float
+        end
+
+        first_item = items.first
+        first_item_data = items_revenue[:data].first
+        first_item_attrs = first_item_data[:attributes]
+
+        expect(first_item_data[:id]).to eq(first_item.id.to_s)
+        expect(first_item_attrs[:name]).to eq(first_item.name)
+        expect(first_item_attrs[:description]).to eq(first_item.description)
+        expect(first_item_attrs[:unit_price]).to eq(first_item.unit_price)
+        expect(first_item_attrs[:merchant_id]).to eq(first_item.merchant_id)
+        expect(first_item_attrs[:revenue]).to eq(first_item.total_revenue)
+      end
+    end
+
     describe '.format_merchants_revenue' do
       it 'formats the merchants response for delivery', :aggregate_failures do
         # See /spec/factories/merchants.rb for #merchants_with_revenue
