@@ -8,4 +8,10 @@ class Invoice < ApplicationRecord
 
   validates :status, presence: true,
                      inclusion: { in: %w[shipped packaged returned] }
+
+  def self.considered_as_revenue
+    joins(:transactions)
+      .where(invoices: { status: 'shipped' },
+             transactions: { result: 'success' })
+  end
 end
