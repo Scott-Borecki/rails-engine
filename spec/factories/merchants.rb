@@ -34,10 +34,6 @@ def merchants_with_random_revenue(quantity)
   quantity.times { merchant_with_revenue(invoice_items_count: rand(1..10)) }
 end
 
-def merchants_without_revenue(quantity, random_ii_count = false)
-  if random_ii_count == true
-    quantity.times { merchant_without_revenue(invoice_items_count: rand(1..10)) }
-  else
-    quantity.times { merchant_without_revenue }
-  end
+def merchants_without_revenue(quantity)
+  quantity.times { merchant_without_revenue }
 end
