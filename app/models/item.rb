@@ -53,7 +53,9 @@ class Item < ApplicationRecord
     joins(invoice_items: :invoice)
       .merge(Invoice.considered_as_revenue)
       .select('items.*,
-               SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue')
+               SUM(
+                 invoice_items.quantity * invoice_items.unit_price
+                 ) AS total_revenue')
       .group(:id)
       .order(total_revenue: :desc)
       .limit(quantity)

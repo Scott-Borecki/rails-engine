@@ -34,7 +34,9 @@ class Merchant < ApplicationRecord
     joins(invoices: :invoice_items)
       .merge(Invoice.considered_as_revenue)
       .select('merchants.*,
-               SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue')
+               SUM(
+                 invoice_items.quantity * invoice_items.unit_price
+                 ) AS total_revenue')
       .group(:id)
       .order(total_revenue: :desc)
       .limit(quantity)
