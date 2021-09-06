@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Merchants Most Items API' do
+describe 'Merchants Most Items API', type: :request do
   describe 'GET /api/v1/merchants/most_items' do
     context 'when there are merchants' do
       # See /spec/factories/merchants.rb for #merchants_with_random_revenue

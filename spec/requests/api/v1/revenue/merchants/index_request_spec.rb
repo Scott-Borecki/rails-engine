@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Revenue Merchants API' do
+describe 'Revenue Merchants API', type: :request do
   describe 'GET /api/v1/revenue/merchants' do
     context 'when there are merchants' do
       # See /spec/factories/merchants.rb for #merchants_with_revenue
@@ -47,7 +47,7 @@ describe 'Revenue Merchants API' do
     context 'when there are no merchants' do
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/revenue/merchants' }
-        
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end

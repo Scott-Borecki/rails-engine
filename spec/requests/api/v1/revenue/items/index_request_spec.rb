@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Revenue Items API' do
+describe 'Revenue Items API', type: :request do
   describe 'GET /api/v1/revenue/items' do
     context 'when there are items' do
       # See /spec/factories/items.rb for #items_with_random_revenue
