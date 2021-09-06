@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
       namespace :merchants do
         resources :find_all, only: [:index]
+        resources :most_items, only: [:index]
       end
 
       resources :items, only: [:index, :show, :create, :update, :destroy] do
