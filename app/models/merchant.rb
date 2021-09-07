@@ -7,10 +7,11 @@ class Merchant < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.order_by_name(order = 'asc')
-    order = 'asc' unless order == 'desc'
+  def self.find_all_by_name(name = nil)
+    return nil if name.nil?
 
-    order(name: order)
+    where('name ILIKE ?', "%#{name}%")
+      .order_by_name
   end
 
   def self.find_by_name(name = nil)
@@ -20,11 +21,10 @@ class Merchant < ApplicationRecord
       .find_by('name ILIKE ?', "%#{name}%")
   end
 
-  def self.find_all_by_name(name = nil)
-    return nil if name.nil?
+  def self.order_by_name(order = 'asc')
+    order = 'asc' unless order == 'desc'
 
-    where('name ILIKE ?', "%#{name}%")
-      .order_by_name
+    order(name: order)
   end
 
   def self.top_by_items_sold(quantity = 5)
