@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       end
 
       namespace :merchants do
+        resources :find, only: [:index]
         resources :find_all, only: [:index]
         resources :most_items, only: [:index]
       end
