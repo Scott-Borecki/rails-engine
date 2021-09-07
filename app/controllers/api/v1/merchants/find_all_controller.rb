@@ -5,7 +5,7 @@ class Api::V1::Merchants::FindAllController < ApplicationController
       formatted_merchants = MerchantSerializer.format_merchants(merchants)
       json_response(formatted_merchants)
     else
-      render status: :bad_request
+      bad_request
     end
   end
 end

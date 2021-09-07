@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'RevenueSerializer', type: :serializer do
   describe 'class methods' do
-    describe '.format_merchant_revenue' do
+    describe '.format_merchant' do
       it 'formats the merchant revenue response for delivery', :aggregate_failures do
         # See /spec/factories/merchants.rb for #merchant_with_revenue
         merchant = merchant_with_revenue
-        merchant_revenue = RevenueSerializer.format_merchant_revenue(merchant)
+        merchant_revenue = RevenueSerializer.format_merchant(merchant)
 
         expect(merchant_revenue).to be_a Hash
         expect(merchant_revenue.size).to eq(1)
@@ -36,12 +36,12 @@ describe 'RevenueSerializer', type: :serializer do
       end
     end
 
-    describe '.format_items_revenue' do
+    describe '.format_items' do
       it 'formats the items response for delivery', :aggregate_failures do
         # See /spec/factories/items.rb for #items_with_random_revenue
         items_with_random_revenue(15)
         items = Item.top_by_revenue(15)
-        items_revenue = RevenueSerializer.format_items_revenue(items)
+        items_revenue = RevenueSerializer.format_items(items)
 
         expect(items_revenue).to be_a Hash
         expect(items_revenue.size).to eq(1)
@@ -94,12 +94,12 @@ describe 'RevenueSerializer', type: :serializer do
       end
     end
 
-    describe '.format_merchants_revenue' do
+    describe '.format_merchants' do
       it 'formats the merchants response for delivery', :aggregate_failures do
         # See /spec/factories/merchants.rb for #merchants_with_revenue
         merchants_with_revenue(15)
         merchants = Merchant.top_by_revenue(15)
-        merchants_revenue = RevenueSerializer.format_merchants_revenue(merchants)
+        merchants_revenue = RevenueSerializer.format_merchants(merchants)
 
         expect(merchants_revenue).to be_a Hash
         expect(merchants_revenue.size).to eq(1)

@@ -8,11 +8,53 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :unit_price, presence: true, numericality: true
 
-  def self.order_by_name(order = 'asc')
-    order = 'asc' unless order == 'desc'
+  ### FIND BY NAME ###
 
-    order(name: order)
+  def self.find_all_by_name(name = nil)
+    return nil if name.nil?
+
+    where('name ILIKE ?', "%#{name}%")
+      .order_by_name
   end
+
+  def self.find_by_name(name = nil)
+    return nil if name.nil?
+
+    order_by_name
+      .find_by('name ILIKE ?', "%#{name}%")
+  end
+
+  ### FIND ALL BY PRICE ###
+
+  def self.find_all_by_max_price(price = nil)
+    price = convert_to_float(price)
+    return nil if price.nil?
+    return 'bad request' if price.negative?
+
+    where('unit_price <= ?', price)
+      .order_by_name
+  end
+
+  def self.find_all_by_min_price(price = nil)
+    price = convert_to_float(price)
+    return nil if price.nil?
+    return 'bad request' if price.negative?
+
+    where('unit_price >= ?', price)
+      .order_by_name
+  end
+
+  def self.find_all_by_price_range(min = nil, max = nil)
+    min = convert_to_float(min)
+    max = convert_to_float(max)
+    return nil if min.nil? || max.nil?
+    return 'bad request' if min > max || min.negative? || max.negative?
+
+    where('unit_price >= ? and unit_price <= ?', min, max)
+      .order_by_name
+  end
+
+  ### FIND BY PRICE METHODS ###
 
   def self.find_by_max_price(price = nil)
     price = convert_to_float(price)
@@ -42,12 +84,15 @@ class Item < ApplicationRecord
       .find_by('unit_price >= ? and unit_price <= ?', min, max)
   end
 
-  def self.find_by_name(name = nil)
-    return nil if name.nil?
+  ### ORDER BY ###
 
-    order_by_name
-      .find_by('name ILIKE ?', "%#{name}%")
+  def self.order_by_name(order = 'asc')
+    order = 'asc' unless order == 'desc'
+
+    order(name: order)
   end
+
+  ### TOP BY ###
 
   def self.top_by_revenue(quantity = 10)
     joins(invoice_items: :invoice)
