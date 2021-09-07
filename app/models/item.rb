@@ -8,10 +8,18 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :unit_price, presence: true, numericality: true
 
-  def self.order_by_name(order = 'asc')
-    order = 'asc' unless order == 'desc'
+  def self.find_all_by_name(name = nil)
+    return nil if name.nil?
 
-    order(name: order)
+    where('name ILIKE ?', "%#{name}%")
+      .order_by_name
+  end
+
+  def self.find_by_name(name = nil)
+    return nil if name.nil?
+
+    order_by_name
+      .find_by('name ILIKE ?', "%#{name}%")
   end
 
   def self.find_by_max_price(price = nil)
@@ -32,6 +40,12 @@ class Item < ApplicationRecord
       .find_by('unit_price >= ?', price)
   end
 
+  def self.order_by_name(order = 'asc')
+    order = 'asc' unless order == 'desc'
+
+    order(name: order)
+  end
+
   def self.find_by_price_range(min = nil, max = nil)
     min = convert_to_float(min)
     max = convert_to_float(max)
@@ -40,13 +54,6 @@ class Item < ApplicationRecord
 
     order_by_name
       .find_by('unit_price >= ? and unit_price <= ?', min, max)
-  end
-
-  def self.find_by_name(name = nil)
-    return nil if name.nil?
-
-    order_by_name
-      .find_by('name ILIKE ?', "%#{name}%")
   end
 
   def self.top_by_revenue(quantity = 10)
