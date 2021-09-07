@@ -13,6 +13,13 @@ class Merchant < ApplicationRecord
     order(name: order)
   end
 
+  def self.find_by_name(name = nil)
+    return nil if name.nil?
+
+    order_by_name
+      .find_by('name ILIKE ?', "%#{name}%")
+  end
+
   def self.find_all_by_name(name = nil)
     return nil if name.nil?
 
