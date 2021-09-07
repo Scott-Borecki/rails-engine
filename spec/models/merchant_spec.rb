@@ -62,7 +62,7 @@ RSpec.describe Merchant, type: :model do
 
       context 'when I provide a valid search string' do
         context 'when there are merchants with a partial match' do
-          it 'returns the first merchant with partial match in case-sensitive alphabetical order' do
+          it 'returns the merchants with partial matches in case-sensitive alphabetical order' do
             expect(Merchant.find_all_by_name('aA')).to eq(merchants_aa)
           end
         end
