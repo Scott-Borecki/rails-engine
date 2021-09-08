@@ -43,12 +43,10 @@ describe 'Item Merchant API', type: :request do
 
       it 'returns an error message', :aggregate_failures do
         expect(json).not_to be_empty
-        expect(json.size).to eq(2)
+        expect(json.size).to eq(3)
 
-        expect(json[:message]).to eq('your query could not be completed')
-
-        expect(json[:errors]).to be_an Array
-        expect(json[:errors]).to eq(["Couldn't find Item with 'id'=some-string"])
+        expect(json[:error]).to be_a Hash
+        expect(json[:error]).to eq({:item_id=>["is not a number"]})
       end
 
       it 'returns status code 404: not found' do
