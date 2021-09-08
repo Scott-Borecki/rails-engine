@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe Merchant, type: :model do
   describe '.top_by_items_sold' do
     # See /spec/factories/merchants.rb for:
-    #   #merchant_with_revenue
-    #   #merchant_without_revenue
-    #
+    #   - merchant_with_revenue
+    #   - merchant_without_revenue
     let!(:merchant1) { merchant_with_revenue(invoice_items_count: 1) }
     let!(:merchant2) { merchant_with_revenue(invoice_items_count: 6) }
     let!(:merchant3) { merchant_with_revenue(invoice_items_count: 4) }

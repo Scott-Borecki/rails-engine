@@ -4,9 +4,8 @@ RSpec.describe Item, type: :model do
   describe '.top_by_revenue' do
     context 'when I provide a quantity' do
       # See /spec/factories/items.rb for:
-      #   #item_with_revenue
-      #   #item_without_revenue
-      #
+      #   - item_with_revenue
+      #   - item_without_revenue
       let!(:item1) { item_with_revenue(invoice_items_count: 1) }
       let!(:item2) { item_with_revenue(invoice_items_count: 6) }
       let!(:item3) { item_with_revenue(invoice_items_count: 4) }
