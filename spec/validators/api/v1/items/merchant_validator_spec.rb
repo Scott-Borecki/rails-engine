@@ -23,6 +23,16 @@ describe Api::V1::Items::MerchantValidator, type: :validator do
     end
 
     describe 'invalid objects' do
+      context 'when I do not provide an item id' do
+        it 'returns an invalid object' do
+          validator = Api::V1::Items::MerchantValidator.new
+          error_message = {:item_id=>["can't be blank", "is not a number"]}
+
+          expect(validator).not_to be_valid
+          expect(validator.errors.messages).to eq(error_message)
+        end
+      end
+
       context 'when I provide an item id as a letter string' do
         it 'returns an invalid object' do
           find_params = { item_id: 'my_item_id' }

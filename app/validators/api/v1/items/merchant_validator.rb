@@ -6,7 +6,7 @@ module Api
 
         attr_accessor :item_id
 
-        validates :item_id, numericality: true
+        validates :item_id, presence: true, numericality: true
 
         def initialize(data = {})
           @item_id = data[:item_id]
