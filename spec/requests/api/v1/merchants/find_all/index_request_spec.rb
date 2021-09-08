@@ -10,8 +10,15 @@ describe 'Merchants FindAll API', type: :request do
       let!(:merchant5) { create(:merchant, name: 'BAa') } # Asc Order: 1
       let(:merchants_aa) { [merchant5, merchant1, merchant3] }
 
+      let(:blank_name_message) { { name: ["can't be blank"] } }
+
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/merchants/find_all' }
+
+        it 'returns a jSON object with an error', :aggregate_failures do
+          expect(json).to have_key(:error)
+          expect(json[:error]).to eq(blank_name_message)
+        end
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
@@ -20,6 +27,11 @@ describe 'Merchants FindAll API', type: :request do
 
       context 'when I provide any empty query parameter' do
         before { get '/api/v1/merchants/find_all?name=' }
+
+        it 'returns a jSON object with an error', :aggregate_failures do
+          expect(json).to have_key(:error)
+          expect(json[:error]).to eq(blank_name_message)
+        end
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)

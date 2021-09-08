@@ -1,18 +1,28 @@
 class Api::V1::Revenue::ItemsController < ApplicationController
+  before_action :validate_query, only: [:index]
+
   def index
-    if !params[:quantity]
-      items = Item.top_by_revenue
-      formatted_items = RevenueSerializer.format_items(items)
-      json_response(formatted_items)
-    elsif !params[:quantity].blank? &&
-          !convert_to_float(params[:quantity]).nil? &&
-          convert_to_float(params[:quantity]).positive?
-    then
-      items = Item.top_by_revenue(params[:quantity])
-      formatted_items = RevenueSerializer.format_items(items)
-      json_response(formatted_items)
-    else
-      bad_request
-    end
+    items = if params[:quantity].present?
+              Item.top_by_revenue(params[:quantity])
+            else
+              Item.top_by_revenue
+            end
+    formatted_items = RevenueSerializer.format_items(items)
+    json_response(formatted_items)
+  end
+
+  private
+
+  def items_params
+    params.permit(:quantity)
+  end
+
+  def validate_query
+    return unless params[:quantity]
+
+    validator = Api::V1::Revenue::ItemsValidator.new(items_params)
+    return if validator.valid?
+
+    json_error_response(validator.errors, :bad_request)
   end
 end
