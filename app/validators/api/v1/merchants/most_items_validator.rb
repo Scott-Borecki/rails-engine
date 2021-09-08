@@ -6,7 +6,8 @@ module Api
 
         attr_accessor :quantity
 
-        validates :quantity, presence: true, numericality: { allow_nil: true, greater_than: 0 }
+        validates :quantity, presence: true, 
+                             numericality: { allow_nil: true, greater_than: 0 }
 
         def initialize(data = {})
           @quantity = data[:quantity]
