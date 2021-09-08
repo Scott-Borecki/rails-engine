@@ -1,11 +1,9 @@
 class Api::V1::Items::FindAllController < ApplicationController
+  before_action :validate_query, only: [:index]
+
   def index
     if params[:name].present?
-      if params[:min_price].present? || params[:max_price].present?
-        bad_request
-      else
-        find_all_by_name
-      end
+      find_all_by_name
     elsif params[:min_price].present? && params[:max_price].present?
       find_all_by_price_range
     elsif params[:min_price].present?
@@ -18,6 +16,17 @@ class Api::V1::Items::FindAllController < ApplicationController
   end
 
   private
+
+  def find_params
+    params.permit(:name, :min_price, :max_price)
+  end
+
+  def validate_query
+    validator = Api::V1::Items::FindValidator.new(find_params)
+    return if validator.valid?
+
+    json_error_response(validator.errors, :bad_request)
+  end
 
   def find_all_by_max_price
     items = Item.find_all_by_max_price(params[:max_price])
