@@ -35,6 +35,14 @@ describe 'Revenue Items API', type: :request do
       context 'when I provide invalid quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=0' }
 
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["must be greater than 0"]})
+        end
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end
@@ -43,6 +51,14 @@ describe 'Revenue Items API', type: :request do
       context 'when I provide a string quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=ten' }
 
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["is not a number"]})
+        end
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end
@@ -50,6 +66,14 @@ describe 'Revenue Items API', type: :request do
 
       context 'when I provide empty quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=' }
+
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["can't be blank", "is not a number"]})
+        end
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
@@ -87,6 +111,14 @@ describe 'Revenue Items API', type: :request do
       context 'when I provide invalid quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=0' }
 
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["must be greater than 0"]})
+        end
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end
@@ -95,6 +127,14 @@ describe 'Revenue Items API', type: :request do
       context 'when I provide a string quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=ten' }
 
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["is not a number"]})
+        end
+
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
         end
@@ -102,6 +142,14 @@ describe 'Revenue Items API', type: :request do
 
       context 'when I provide empty quantity query parameters' do
         before { get '/api/v1/revenue/items?quantity=' }
+
+        it 'returns an error message', :aggregate_failures do
+          expect(json).not_to be_empty
+          expect(json.size).to eq(3)
+
+          expect(json[:error]).to be_a Hash
+          expect(json[:error]).to eq({:quantity=>["can't be blank", "is not a number"]})
+        end
 
         it 'returns status code 400: bad request' do
           expect(response).to have_http_status(:bad_request)
