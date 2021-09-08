@@ -10,8 +10,6 @@ class Api::V1::Items::FindController < ApplicationController
       find_by_min_price
     elsif params[:max_price].present?
       find_by_max_price
-    else
-      bad_request
     end
   end
 

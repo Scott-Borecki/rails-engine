@@ -10,7 +10,7 @@ describe 'Merchants Find API', type: :request do
       let!(:merchant5) { create(:merchant, name: 'BAa') } # Asc Order: 1
       let(:merchants_aa) { [merchant5, merchant1, merchant3] }
 
-      let(:blank_name_message) { {:name=>["can't be blank"]} }
+      let(:blank_name_message) { { name: ["can't be blank"] } }
 
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/merchants/find' }

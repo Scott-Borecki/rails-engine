@@ -23,13 +23,15 @@ describe Api::V1::Items::MerchantValidator, type: :validator do
     end
 
     describe 'invalid objects' do
+      let(:not_a_number_message) { { item_id: ['is not a number'] } }
+      let(:missing_item_id_message) { { item_id: ["can't be blank", 'is not a number'] } }
+
       context 'when I do not provide an item id' do
         it 'returns an invalid object' do
           validator = Api::V1::Items::MerchantValidator.new
-          error_message = {:item_id=>["can't be blank", "is not a number"]}
 
           expect(validator).not_to be_valid
-          expect(validator.errors.messages).to eq(error_message)
+          expect(validator.errors.messages).to eq(missing_item_id_message)
         end
       end
 
@@ -37,22 +39,19 @@ describe Api::V1::Items::MerchantValidator, type: :validator do
         it 'returns an invalid object' do
           find_params = { item_id: 'my_item_id' }
           validator = Api::V1::Items::MerchantValidator.new(find_params)
-          error_message = {:item_id=>["is not a number"]}
 
           expect(validator).not_to be_valid
-          expect(validator.errors.messages).to eq(error_message)
+          expect(validator.errors.messages).to eq(not_a_number_message)
         end
       end
 
       context 'when I provide an item id as a number/letter string' do
         it 'returns an invalid object' do
+          find_params = { item_id: 'item_id_5' }
+          validator = Api::V1::Items::MerchantValidator.new(find_params)
 
-        find_params = { item_id: 'item_id_5' }
-        validator = Api::V1::Items::MerchantValidator.new(find_params)
-        error_message = {:item_id=>["is not a number"]}
-
-        expect(validator).not_to be_valid
-        expect(validator.errors.messages).to eq(error_message)
+          expect(validator).not_to be_valid
+          expect(validator.errors.messages).to eq(not_a_number_message)
         end
       end
     end

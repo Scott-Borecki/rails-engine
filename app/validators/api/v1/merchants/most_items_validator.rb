@@ -6,7 +6,7 @@ module Api
 
         attr_accessor :quantity
 
-        validates :quantity, presence: true, 
+        validates :quantity, presence: true,
                              numericality: { allow_nil: true, greater_than: 0 }
 
         def initialize(data = {})

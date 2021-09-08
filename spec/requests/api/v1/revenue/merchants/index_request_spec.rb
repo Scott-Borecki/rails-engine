@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Revenue Merchants API', type: :request do
   describe 'GET /api/v1/revenue/merchants' do
+    let(:blank_quantity_message) { { quantity: ["can't be blank"] } }
+    let(:empty_quantity_message) { { quantity: ["can't be blank", 'is not a number'] } }
+    let(:neg_quantity_message) { { quantity: ['must be greater than 0'] } }
+
     context 'when there are merchants' do
       # See /spec/factories/merchants.rb for #merchants_with_revenue
       let!(:merchants) { merchants_with_random_revenue(30) }
@@ -14,7 +18,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["can't be blank"]})
+          expect(json[:error]).to eq(blank_quantity_message)
         end
 
         it 'returns status code 400: bad request' do
@@ -43,7 +47,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["must be greater than 0"]})
+          expect(json[:error]).to eq(neg_quantity_message)
         end
 
         it 'returns status code 400: bad request' do
@@ -59,7 +63,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["can't be blank", "is not a number"]})
+          expect(json[:error]).to eq(empty_quantity_message)
         end
 
         it 'returns status code 400: bad request' do
@@ -77,7 +81,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["can't be blank"]})
+          expect(json[:error]).to eq(blank_quantity_message)
         end
 
         it 'returns status code 400: bad request' do
@@ -106,7 +110,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["must be greater than 0"]})
+          expect(json[:error]).to eq(neg_quantity_message)
         end
 
         it 'returns status code 400: bad request' do
@@ -122,7 +126,7 @@ describe 'Revenue Merchants API', type: :request do
           expect(json.size).to eq(3)
 
           expect(json[:error]).to be_a Hash
-          expect(json[:error]).to eq({:quantity=>["can't be blank", "is not a number"]})
+          expect(json[:error]).to eq(empty_quantity_message)
         end
 
         it 'returns status code 400: bad request' do

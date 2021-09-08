@@ -10,11 +10,11 @@ describe 'Items Find API', type: :request do
       let!(:item5) { create(:item, name: 'BAa', unit_price: 6.14) } # Name Asc: 1; Price Desc: 4
       let(:first_item_by_name) { item5 }
 
-      let(:bad_query_message) { {:query=>["query must be provided with a value"]} }
-      let(:neg_min_price_message) { {:min_price=>["must be greater than 0"]} }
-      let(:neg_max_price_message) { {:max_price=>["must be greater than 0"]} }
-      let(:bad_price_range_message) { {:price=>["max price must be greater than min price"]} }
-      let(:bad_price_name_message) { {:name=>["cannot be queried with price"]} }
+      let(:bad_query_message) { { query: ['query must be provided with a value'] } }
+      let(:bad_price_name_message) { { name: ['cannot be queried with price'] } }
+      let(:bad_price_range_message) { { price: ['max price must be greater than min price'] } }
+      let(:neg_max_price_message) { { max_price: ['must be greater than 0'] } }
+      let(:neg_min_price_message) { { min_price: ['must be greater than 0'] } }
 
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/items/find' }

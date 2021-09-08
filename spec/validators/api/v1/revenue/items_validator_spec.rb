@@ -23,13 +23,15 @@ describe Api::V1::Revenue::ItemsValidator, type: :validator do
     end
 
     describe 'invalid objects' do
+      let(:blank_quantity_message) { { quantity: ["can't be blank"] } }
+      let(:no_number_quantity_message) { { quantity: ['is not a number'] } }
+
       context 'when I do not provide a quantity' do
         it 'returns an invalid object' do
           validator = Api::V1::Revenue::ItemsValidator.new
-          error_message = {:quantity=>["can't be blank"]}
 
           expect(validator).not_to be_valid
-          expect(validator.errors.messages).to eq(error_message)
+          expect(validator.errors.messages).to eq(blank_quantity_message)
         end
       end
 
@@ -37,22 +39,19 @@ describe Api::V1::Revenue::ItemsValidator, type: :validator do
         it 'returns an invalid object' do
           find_params = { quantity: 'some-quantity' }
           validator = Api::V1::Revenue::ItemsValidator.new(find_params)
-          error_message = {:quantity=>["is not a number"]}
 
           expect(validator).not_to be_valid
-          expect(validator.errors.messages).to eq(error_message)
+          expect(validator.errors.messages).to eq(no_number_quantity_message)
         end
       end
 
       context 'when I provide a quantity as a number/letter string' do
         it 'returns an invalid object' do
+          find_params = { quantity: 'some-quantity-5' }
+          validator = Api::V1::Revenue::ItemsValidator.new(find_params)
 
-        find_params = { quantity: 'some-quantity-5' }
-        validator = Api::V1::Revenue::ItemsValidator.new(find_params)
-        error_message = {:quantity=>["is not a number"]}
-
-        expect(validator).not_to be_valid
-        expect(validator.errors.messages).to eq(error_message)
+          expect(validator).not_to be_valid
+          expect(validator.errors.messages).to eq(no_number_quantity_message)
         end
       end
     end

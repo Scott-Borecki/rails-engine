@@ -46,7 +46,7 @@ describe 'Item Merchant API', type: :request do
         expect(json.size).to eq(3)
 
         expect(json[:error]).to be_a Hash
-        expect(json[:error]).to eq({:item_id=>["is not a number"]})
+        expect(json[:error]).to eq({ item_id: ['is not a number'] })
       end
 
       it 'returns status code 404: not found' do
