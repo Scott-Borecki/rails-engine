@@ -1,13 +1,20 @@
 # Rails Engine API
 
+![Version][version-badge]
+[![Ruby Style Guide][rubocop-badge]][rubocop-url]
+[![Contributors][contributors-badge]][contributors-url]
+[![Forks][forks-badge]][forks-url]
+[![Stargazers][stars-badge]][stars-url]
+[![Issues][issues-badge]][issues-url]
+
+Rails Engine is an API to access resources from an Ecommerce database.  This API uses both RESTful and non-RESTful endpoints.
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Getting Started](#getting-started)
-- [Endpoints](#endpoints)
-  - [Merchants](#endpoints)
-  - [Items](#endpoints)
+- [Endpoints](#endpoints-documentation)
+  - [Merchants](#merchants)
+  - [Items](#items)
   - [Relationships](#relationships)
   - [Search](#search)
   - [Business Intelligence](#business-intelligence)
@@ -15,20 +22,41 @@
 
 **Author**: [Scott Borecki](https://github.com/scott-borecki)
 
-## Overview
-This is an API that provides a means to access resources from an Ecommerce database.  This API uses both RESTful and non-RESTful endpoints.
-
 ## Getting Started
 
+1. Fork this repository.
 
+2. Clone your forked repository.
 
-## Endpoints
+  `$ git clone` and the copied URL.
 
-Assuming you are accessing the API through your local server, the `base path` of each endpoint request should be:
+3. Install dependencies.
 
-```
-http://localhost:3000/api/v1
-```
+  Navigate into the project directory and run `$ bundle install`.
+
+4. Setup and migrate the database
+
+  From the project directory, run `$ rails db:{drop,create,migrate,seed}`.
+
+  Then run `$ rails db:schema:dump`.
+
+5. Start the Rails Server.
+
+  From the project directory, run `$ rails s`.
+
+6. Fire up your favorite API client.
+
+  For `GET` requests, you can simply send the endpoint requests through your internet browser.  
+
+  For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client such as [Postman][postman-url].
+
+  The `base path` of each endpoint is:
+
+  ```
+  http://localhost:3000/api/v1
+  ```
+
+## Endpoints & Documentation
 
 ### [Merchants](/doc/merchants_endpoints.md)
 
@@ -67,10 +95,25 @@ http://localhost:3000/api/v1
 | ![GitHub Avatar: Scott Borecki][github-avatar] | Scott Borecki<br><br>[![GitHub: Scott-Borecki][github-follow-badge]][GitHub]<br>[![Email: scottborecki@gmail.com][gmail-badge]][gmail]<br>[![LinkedIn: scott-borecki][linkedin-badge]][LinkedIn]<br> |
 |-|-|
 
+<!-- Top Level Badges and Links -->
+[rubocop-badge]: https://img.shields.io/badge/code_style-rubocop-brightgreen.svg?style=flat-square
+[rubocop-url]: https://github.com/rubocop/rubocop
+[version-badge]: https://img.shields.io/badge/API_version-V1-or.svg?&style=flat-square&logoColor=white
+[contributors-badge]: https://img.shields.io/github/contributors/scott-borecki/rails-engine.svg?style=flat-square
+[contributors-url]: https://github.com/scott-borecki/rails-engine/graphs/contributors
+[forks-badge]: https://img.shields.io/github/forks/scott-borecki/rails-engine.svg?style=flat-square
+[forks-url]: https://github.com/scott-borecki/rails-engine/network/members
+[stars-badge]: https://img.shields.io/github/stars/scott-borecki/rails-engine.svg?style=flat-square
+[stars-url]: https://github.com/scott-borecki/rails-engine/stargazers
+[issues-badge]: https://img.shields.io/github/issues/scott-borecki/rails-engine.svg?style=flat-square
+[issues-url]: https://github.com/scott-borecki/rails-engine/issues
+
 <!-- Links -->
+[Repository]: https://github.com/Scott-Borecki/rails-engine
 [GitHub]: https://github.com/scott-borecki
 [gmail]: mailto:scottborecki@gmail.com
 [LinkedIn]: https://www.linkedin.com/in/scott-borecki/
+[postman-url]: https://www.postman.com/
 
 <!-- Badges -->
 [github-follow-badge]: https://img.shields.io/github/followers/scott-borecki?label=follow&style=social
