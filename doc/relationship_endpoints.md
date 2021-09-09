@@ -1,4 +1,4 @@
-# Merchants
+# Relationship Endpoints
 
 HTTP Verb | Endpoint                         | Description                              | Link
 ----------|----------------------------------|------------------------------------------|---------------------------
@@ -9,7 +9,7 @@ GET       | `/items/{item_id}/merchant`      | Get the merchant of the item.    
 
 # Get a Merchant's Items
 
-Returns a list of Items that belong to Merchant.
+Returns a list of items that belong to merchant.
 
 ```
 GET /merchants/{merchant_id}/items
@@ -79,7 +79,7 @@ Status: 404 Not Found
 
 # Get an Item's Merchant
 
-Returns the Merchant that sells the Item.
+Returns the merchant that sells the item.
 
 ```
 GET /items/{item_id}/merchant

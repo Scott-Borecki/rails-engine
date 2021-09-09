@@ -1,4 +1,4 @@
-# Merchants
+# Business Intelligence Endpoints
 
 HTTP Verb | Endpoint                         | Description                              | Link
 ----------|----------------------------------|------------------------------------------|---------------------------
@@ -21,7 +21,7 @@ GET /revenue/items
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-`quantity` | integer | query | Quantity of items returned<br>Default: `10`
+`quantity` | integer | query | Quantity of items returned.<br>Default: `10`
 
 ### Example Request
 
@@ -89,7 +89,7 @@ GET /revenue/merchants
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-`quantity` | integer | query | Quantity of merchants returned<br>Quantity must be provided
+`quantity` | integer | query | Quantity of merchants returned.<br>Quantity must be provided
 
 
 ### Example Request
@@ -149,7 +149,7 @@ GET /merchants/most_items
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-`quantity` | integer | query | Quantity of merchants returned<br>Quantity must be provided
+`quantity` | integer | query | Quantity of merchants returned.<br>Quantity must be provided
 
 
 ### Example Request

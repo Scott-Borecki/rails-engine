@@ -22,8 +22,8 @@ GET /items
 
 Name       | Type    | In    | Description
 -----------|---------|-------|----------------------------------------------------
-`per_page` | integer | query | Results per page<br>Default: `20`
-`page`     | integer | query | Page number of the results to fetch<br>Default: `1`
+`per_page` | integer | query | Results per page.<br>Default: `20`
+`page`     | integer | query | Page number of the results to fetch.<br>Default: `1`
 
 ### Example Request
 
@@ -133,11 +133,6 @@ Creates a new Item with the given attributes.
 POST /items
 ```
 
-### Parameters
-
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-
 ### Request Body
 
 Attribute Name | Type | Description
@@ -199,7 +194,7 @@ PATCH /items/{id}
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-`id`       | integer | path  |
+`id`       | integer | path  | The ID of the item.
 
 ### Request Body
 

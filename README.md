@@ -34,10 +34,10 @@ http://localhost:3000/api/v1
 
 ### Search
 
-- [Find One Item](/doc/search/get_find_item.md)
-- [Find All Items](/doc/search/get_find_all_items.md)
-- [Find One Merchant](/doc/search/get_find_merchant.md)
-- [Find All Merchants](/doc/search/get_find_all_merchants.md)
+- [Find One Item](/doc/search_endpoints.md#find-all-items.md)
+- [Find All Items](/doc/search_endpoints.md#find-one-item.md)
+- [Find One Merchant](/doc/search_endpoints.md#find-all-merchants.md)
+- [Find All Merchants](/doc/search_endpoints.md#find-one-merchant.md)
 
 ### Business Intelligence
 

@@ -1,4 +1,4 @@
-# Merchants
+# Merchants Endpoints
 
 HTTP Verb | Endpoint                   | Description                | Link
 ----------|----------------------------|----------------------------|---------------------------
@@ -19,8 +19,8 @@ GET /merchants
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-`per_page` | integer | query | Results per page<br>Default: `20`
-`page`     | integer | query | Page number of the results to fetch<br>Default: `1`
+`per_page` | integer | query | Results per page.<br>Default: `20`
+`page`     | integer | query | Page number of the results to fetch.<br>Default: `1`
 
 ### Example Request
 
@@ -66,7 +66,7 @@ Status: 200 OK
 
 ## Get One Merchant
 
-Returns a Merchant and their attributes.
+Returns a merchant and their attributes.
 
 ```
 GET /merchants/{merchant_id}
@@ -77,7 +77,7 @@ GET /merchants/{merchant_id}
 
 Name          | Type    | In    | Description
 --------------|---------|-------|-----------------------
-`merchant_id` | integer | path  | The ID of the merchant
+`merchant_id` | integer | path  | The ID of the merchant.
 
 ### Example Request
 
