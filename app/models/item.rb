@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   has_many :invoice_items, dependent: :destroy
   has_many :invoices, through: :invoice_items
 
+  delegate :total_revenue_generated, to: :invoices
+
   validates :name, presence: true
   validates :description, presence: true
   validates :unit_price, presence: true, numericality: true
