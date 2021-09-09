@@ -1,5 +1,7 @@
 # Update an Item
 
+Updates an Item with the given attributes.
+
 ```
 PATCH /items/{id}
 ```

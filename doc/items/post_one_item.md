@@ -1,5 +1,7 @@
 # Create an Item
 
+Creates a new Item with the given attributes.
+
 ```
 POST /items
 ```

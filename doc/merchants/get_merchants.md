@@ -1,5 +1,7 @@
 # Get All Merchants
 
+Get the list of merchants.
+
 ```
 GET /merchants
 ```
@@ -33,23 +35,23 @@ Status: 200 OK
   "data": [
     {
       "id": "1",
-        "type": "merchant",
-        "attributes": {
-          "name": "Mike's Awesome Store",
-        }
+      "type": "merchant",
+      "attributes": {
+        "name": "Schroeder-Jerde"
+      }
     },
     {
       "id": "2",
       "type": "merchant",
       "attributes": {
-        "name": "Store of Fate",
+        "name": "Klein, Rempel and Jones"
       }
-    },
+      },
     {
       "id": "3",
       "type": "merchant",
       "attributes": {
-        "name": "This is the limit of my creativity",
+        "name": "Willms and Sons"
       }
     }
   ]

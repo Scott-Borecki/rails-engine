@@ -1,5 +1,7 @@
 # Get a Item's Merchant
 
+Returns the Merchant that sells the Item.
+
 ```
 GET /items/{item_id}/merchant
 ```
@@ -17,7 +19,7 @@ Name            | Type    | In    | Description
 From your local development web server:
 
 ```
-http://localhost:3000/api/v1/items/1/merchant
+http://localhost:3000/api/v1/items/209/merchant
 ```
 
 
@@ -28,17 +30,19 @@ Status: 200 OK
 ```
 
 ```
-ENTER RESPONSE HERE
+{
+  "data": {
+    "id": "11",
+    "type": "merchant",
+    "attributes": {
+      "name": "Pollich and Sons"
+    }
+  }
+}
 ```
 
 
 ## Resource Not Found
 ```
 Status: 404 Not Found
-```
-
-
-## Validation Failed
-```
-Status: 422 Unprocessable Entity
 ```

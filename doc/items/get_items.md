@@ -1,5 +1,7 @@
 # Get All Items
 
+Returns a list of all the Items and their attributes.
+
 ```
 GET /items
 ```
@@ -21,7 +23,7 @@ http://localhost:3000/api/v1/items
 ```
 
 
-## Default Response
+## Response
 
 ```
 Status: 200 OK
@@ -31,31 +33,34 @@ Status: 200 OK
 {
   "data": [
     {
-      "id": "1",
+      "id": "4",
       "type": "item",
       "attributes": {
-        "name": "Super Widget",
-        "description": "A most excellent widget of the finest crafting",
-        "unit_price": 109.99
-        }
+        "name": "Item Nemo Facere",
+        "description": "Sunt eum id eius magni consequuntur delectus veritatis. Quisquam laborum illo ut ab. Ducimus in est id voluptas autem.",
+        "unit_price": 42.91,
+        "merchant_id": 1
+      }
     },
     {
-      "id": "2",
+      "id": "5",
       "type": "item",
       "attributes": {
-        "name": "Super Widget",
-        "description": "A most excellent widget of the finest crafting",
-        "unit_price": 109.99
-        }
+        "name": "Item Expedita Aliquam",
+        "description": "Voluptate aut labore qui illum tempore eius. Corrupti cum et rerum. Enim illum labore voluptatem dicta consequatur. Consequatur sunt consequuntur ut officiis.",
+        "unit_price": 687.23,
+        "merchant_id": 1
+      }
     },
     {
-      "id": "3",
+      "id": "6",
       "type": "item",
       "attributes": {
-        "name": "Super Widget",
-        "description": "A most excellent widget of the finest crafting",
-        "unit_price": 109.99
-        }
+        "name": "Item Provident At",
+        "description": "Numquam officiis reprehenderit eum ratione neque tenetur. Officia aut repudiandae eum at ipsum doloribus. Iure minus itaque similique. Ratione dicta alias asperiores minima ducimus nesciunt at.",
+        "unit_price": 159.25,
+        "merchant_id": 1
+      }
     }
   ]
 }

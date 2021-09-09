@@ -1,3 +1,10 @@
+# Merchants
+
+HTTP Verb | Endpoint                         | Description                              | Link
+----------|----------------------------------|------------------------------------------|---------------------------
+GET       | `/merchants/{merchant_id}/items` | Get the list of items from the merchant. | [Link](#get_a_merchants_items)
+GET       | `/items/{item_id}/merchant`      | Get the merchant of the item.            | [Link](#get_an_items_merchant)
+
 # Get a Merchant's Items
 
 Returns a list of Items that belong to Merchant.
@@ -11,19 +18,17 @@ GET /merchants/{merchant_id}/items
 
 Name                | Type    | In    | Description
 --------------------|---------|-------|--------------
-`merchant_id`       | integer | path  |
+`merchant_id`       | integer | path  | The ID of the merchant.
 
 
-## Code Sample
-
-From your local development web server:
+## Example Request
 
 ```
-http://localhost:3000/api/v1/merchants/1/items
+GET http://localhost:3000/api/v1/merchants/1/items
 ```
 
 
-## Response
+## Example Response
 
 ```
 Status: 200 OK
@@ -63,6 +68,53 @@ Status: 200 OK
       }
     }
   ]
+}
+```
+
+
+## Resource Not Found
+```
+Status: 404 Not Found
+```
+
+# Get an Item's Merchant
+
+Returns the Merchant that sells the Item.
+
+```
+GET /items/{item_id}/merchant
+```
+
+
+## Parameters
+
+Name            | Type    | In    | Description
+----------------|---------|-------|--------------
+`item_id`       | integer | path  | The ID of the item.
+
+
+## Example Request
+
+```
+GET http://localhost:3000/api/v1/items/209/merchant
+```
+
+
+## Example Response
+
+```
+Status: 200 OK
+```
+
+```
+{
+  "data": {
+    "id": "11",
+    "type": "merchant",
+    "attributes": {
+      "name": "Pollich and Sons"
+    }
+  }
 }
 ```
 

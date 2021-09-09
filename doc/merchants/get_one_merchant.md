@@ -1,5 +1,7 @@
 # Get One Merchant
 
+Returns a Merchant and their attributes.
+
 ```
 GET /merchants/{id}
 ```
@@ -17,7 +19,7 @@ Name       | Type    | In    | Description
 From your local development web server:
 
 ```
-http://localhost:3000/api/v1/merchants/1
+http://localhost:3000/api/v1/merchants/42
 ```
 
 
@@ -30,10 +32,10 @@ Status: 200 OK
 ```
 {
   "data": {
-    "id": "1",
+    "id": "42",
     "type": "merchant",
     "attributes": {
-      "name": "Super Merchant"
+      "name": "Glover Inc"
     }
   }
 }
@@ -44,11 +46,4 @@ Status: 200 OK
 
 ```
 Status: 404 Not Found
-```
-
-
-## Validation Failed
-
-```
-Status: 422 Unprocessable Entity
 ```

@@ -1,5 +1,7 @@
 # Delete an Item
 
+Destroys an Item.
+
 ```
 DESTROY /items/{id}
 ```
