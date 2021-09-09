@@ -12,7 +12,7 @@ Rails Engine is an API to access resources from an Ecommerce database.  This API
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Endpoints](#endpoints-documentation)
+- [Endpoints & Documentation](#endpoints-&-documentation)
   - [Merchants](#merchants)
   - [Items](#items)
   - [Relationships](#relationships)
