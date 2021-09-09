@@ -12,7 +12,7 @@ Rails Engine is an API to access resources from an Ecommerce database.  This API
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Endpoints & Documentation](#endpoints-&-documentation)
+- [Endpoints & Documentation](#endpoints--documentation)
   - [Merchants](#merchants)
   - [Items](#items)
   - [Relationships](#relationships)
@@ -28,33 +28,33 @@ Rails Engine is an API to access resources from an Ecommerce database.  This API
 
 2. Clone your forked repository.
 
-  `$ git clone` and the copied URL.
+   `$ git clone` and the copied URL.
 
 3. Install dependencies.
 
-  Navigate into the project directory and run `$ bundle install`.
+   Navigate into the project directory and run `$ bundle install`.
 
 4. Setup and migrate the database
 
-  From the project directory, run `$ rails db:{drop,create,migrate,seed}`.
+   From the project directory, run `$ rails db:{drop,create,migrate,seed}`.
 
-  Then run `$ rails db:schema:dump`.
+   Then run `$ rails db:schema:dump`.
 
 5. Start the Rails Server.
 
-  From the project directory, run `$ rails s`.
+   From the project directory, run `$ rails s`.
 
 6. Fire up your favorite API client.
 
-  For `GET` requests, you can simply send the endpoint requests through your internet browser.  
+   For `GET` requests, you can simply send the endpoint requests through your internet browser.  
 
-  For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client such as [Postman][postman-url].
+   For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client such as [Postman][postman-url].
 
-  The `base path` of each endpoint is:
+   The `base path` of each endpoint is:
 
-  ```
-  http://localhost:3000/api/v1
-  ```
+   ```
+   http://localhost:3000/api/v1
+   ```
 
 ## Endpoints & Documentation
 
