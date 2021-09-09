@@ -11,6 +11,7 @@ Rails Engine is a built-from-scratch API that accesses resources from an Ecommer
 
 ## Table of Contents
 
+- [Minimum Requirements](#minimum-requirements)
 - [Getting Started](#getting-started)
 - [Endpoints & Documentation](#endpoints--documentation)
   - [Merchants](#merchants)
@@ -19,6 +20,13 @@ Rails Engine is a built-from-scratch API that accesses resources from an Ecommer
   - [Search](#search)
   - [Business Intelligence](#business-intelligence)
 - [Contributors](#contributors)
+
+## Minimum Requirements
+
+- Rails 5.2.6
+- Ruby 2.7.2
+- PostgreSQL 9.3.x or later 
+- API Client
 
 ## Getting Started
 
