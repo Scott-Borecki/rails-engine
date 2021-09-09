@@ -6,8 +6,8 @@ RSpec.describe Invoice, type: :model do
     #   - invoice_with_revenue
     #   - invoice_without_revenue
     let!(:invoice1) { invoice_without_revenue(status: 'packaged', result: 'success') }
-    let!(:invoice2) { invoice_with_revenue(status: 'shipped', result: 'success') }
-    let!(:invoice3) { invoice_with_revenue(status: 'shipped', result: 'success') }
+    let!(:invoice2) { invoice_with_revenue }
+    let!(:invoice3) { invoice_with_revenue }
     let!(:invoice4) { invoice_without_revenue(status: 'returned', result: 'refunded') }
     let!(:invoice5) { invoice_without_revenue(status: 'shipped', result: 'failed') }
 
