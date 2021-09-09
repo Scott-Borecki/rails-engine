@@ -2,11 +2,11 @@
 
 HTTP Verb | Endpoint                   | Description                | Link
 ----------|----------------------------|----------------------------|-------------------------
-GET       | `/items`                   | Get the list of items.     | [Link](#get_all_items)
-GET       | `/items/{item_id}`         | Get a single item.         | [Link](#get_one_item)
-POST      | `/items/`                  | Create an item.            | [Link](#create_an_item)
-PATCH     | `/items/{item_id}`         | Update an item.            | [Link](#update_an_item)
-DELETE    | `/items/{item_id}`         | Delete an item.            | [Link](#delete_an_item)
+GET       | `/items`                   | Get the list of items.     | [Link](#get-all-items)
+GET       | `/items/{item_id}`         | Get a single item.         | [Link](#get-one-item)
+POST      | `/items/`                  | Create an item.            | [Link](#create-an-item)
+PATCH     | `/items/{item_id}`         | Update an item.            | [Link](#update-an-item)
+DELETE    | `/items/{item_id}`         | Delete an item.            | [Link](#delete-an-item)
 
 ## Get All Items
 

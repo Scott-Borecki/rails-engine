@@ -17,21 +17,21 @@ http://localhost:3000/api/v1
 
 ### Merchants
 
-- [Get All Merchants](/doc/merchants_endpoints.md#get_all_merchants)
-- [Get One Merchant](/doc/merchants_endpoints.md#get_one_merchant)
+- [Get All Merchants](/doc/merchants_endpoints.md#get-all-merchants)
+- [Get One Merchant](/doc/merchants_endpoints.md#get-one-merchant)
 
 ### Items
 
-- [Get All Items](/doc/items_endpoints.md#get_all_items)
-- [Get One Item](/doc/items_endpoints.md#get_one_item)
-- [Create an Item](/doc/items_endpoints.md#create_an_item)
-- [Update an Item](/doc/items_endpoints.md#update_an_item)
-- [Destroy an Item](/doc/items_endpoints.md#delete_an_item)
+- [Get All Items](/doc/items_endpoints.md#get-all-items)
+- [Get One Item](/doc/items_endpoints.md#get-one-item)
+- [Create an Item](/doc/items_endpoints.md#create-an-item)
+- [Update an Item](/doc/items_endpoints.md#update-an-item)
+- [Destroy an Item](/doc/items_endpoints.md#delete-an-item)
 
 ### Relationships
 
-- [Get a Merchant's Items](/doc/relationship_endpoints.md#get_a_merchants_items.md)
-- [Get an Item's Merchant](/doc/relationship_endpoints.md#get_an_items_merchant.md)
+- [Get a Merchant's Items](/doc/relationship_endpoints.md#get-a-merchants-items)
+- [Get an Item's Merchant](/doc/relationship_endpoints.md#get-an-items-merchant)
 
 ### Search
 

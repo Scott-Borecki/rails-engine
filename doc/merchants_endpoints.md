@@ -2,8 +2,8 @@
 
 HTTP Verb | Endpoint                   | Description                | Link
 ----------|----------------------------|----------------------------|---------------------------
-GET       | `/merchants`               | Get the list of merchants. | [Link](#get_all_merchants)
-GET       | `/merchants/{merchant_id}` | Get a single merchant.     | [Link](#get_one_merchant)
+GET       | `/merchants`               | Get the list of merchants. | [Link](#get-all-merchants)
+GET       | `/merchants/{merchant_id}` | Get a single merchant.     | [Link](#get-one-merchant)
 
 ## Get All Merchants
 
