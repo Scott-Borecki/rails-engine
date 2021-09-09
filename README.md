@@ -7,7 +7,7 @@
 [![Stargazers][stars-badge]][stars-url]
 [![Issues][issues-badge]][issues-url]
 
-Rails Engine is an API to access resources from an Ecommerce database.  This API uses both RESTful and non-RESTful endpoints.
+Rails Engine is a built-from-scratch API that accesses resources from an Ecommerce database using RESTful and non-RESTful endpoints.
 
 ## Table of Contents
 
@@ -19,8 +19,6 @@ Rails Engine is an API to access resources from an Ecommerce database.  This API
   - [Search](#search)
   - [Business Intelligence](#business-intelligence)
 - [Contributors](#contributors)
-
-**Author**: [Scott Borecki](https://github.com/scott-borecki)
 
 ## Getting Started
 
