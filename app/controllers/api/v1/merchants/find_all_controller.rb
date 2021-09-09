@@ -4,7 +4,7 @@ class Api::V1::Merchants::FindAllController < ApplicationController
   def index
     merchants = Merchant.find_all_by_name(params[:name])
     formatted_merchants = MerchantSerializer.format_merchants(merchants)
-    json_response(formatted_merchants)
+    render json_response(formatted_merchants)
   end
 
   private
@@ -17,6 +17,6 @@ class Api::V1::Merchants::FindAllController < ApplicationController
     validator = Api::V1::Merchants::FindValidator.new(find_params)
     return if validator.valid?
 
-    json_error_response(validator.errors, :bad_request)
+    render json_error_response(validator.errors, :bad_request)
   end
 end

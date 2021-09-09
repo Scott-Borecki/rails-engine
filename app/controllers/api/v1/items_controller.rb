@@ -4,19 +4,19 @@ class Api::V1::ItemsController < ApplicationController
   def index
     items = Item.all.offset(offset).limit(per_page)
     formatted_items = ItemSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 
   def show
     item = Item.find(params[:id])
     formatted_item = ItemSerializer.format_item(item)
-    json_response(formatted_item)
+    render json_response(formatted_item)
   end
 
   def create
     item = Item.create!(item_params)
     formatted_item = ItemSerializer.format_item(item)
-    json_response(formatted_item, :created)
+    render json_response(formatted_item, :created)
   end
 
   def update
@@ -24,7 +24,7 @@ class Api::V1::ItemsController < ApplicationController
     Merchant.find(params[:merchant_id]) if params[:merchant_id]
     item.update!(item_params)
     formatted_item = ItemSerializer.format_item(item)
-    json_response(formatted_item)
+    render json_response(formatted_item)
   end
 
   def destroy
