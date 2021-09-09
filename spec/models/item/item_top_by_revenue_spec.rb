@@ -4,17 +4,16 @@ RSpec.describe Item, type: :model do
   describe '.top_by_revenue' do
     context 'when I provide a quantity' do
       # See /spec/factories/items.rb for:
-      #   #item_with_revenue
-      #   #item_without_revenue
-      #
-      let!(:item1) { item_with_revenue(invoice_items_count: 1) }
-      let!(:item2) { item_with_revenue(invoice_items_count: 6) }
-      let!(:item3) { item_with_revenue(invoice_items_count: 4) }
-      let!(:item4) { item_with_revenue(invoice_items_count: 5) }
-      let!(:item5) { item_with_revenue(invoice_items_count: 3) }
-      let!(:item6) { item_with_revenue(invoice_items_count: 2) }
-      let!(:item7) { item_without_revenue(invoice_items_count: 7) }
-      let!(:item8) { item_without_revenue(invoice_items_count: 8) }
+      #   - item_with_revenue
+      #   - item_without_revenue
+      let!(:item1) { item_with_revenue(ii_count: 1) }
+      let!(:item2) { item_with_revenue(ii_count: 6) }
+      let!(:item3) { item_with_revenue(ii_count: 4) }
+      let!(:item4) { item_with_revenue(ii_count: 5) }
+      let!(:item5) { item_with_revenue(ii_count: 3) }
+      let!(:item6) { item_with_revenue(ii_count: 2) }
+      let!(:item7) { item_without_revenue(ii_count: 7) }
+      let!(:item8) { item_without_revenue(ii_count: 8) }
 
       let(:top_six_by_revenue) { [item2, item4, item3, item5, item6, item1] }
       let(:top_three_by_revenue) { [item2, item4, item3] }

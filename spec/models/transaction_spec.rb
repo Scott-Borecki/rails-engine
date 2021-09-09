@@ -12,10 +12,14 @@ RSpec.describe Transaction, type: :model do
     it { should validate_presence_of(:credit_card_expiration_date) }
     it { should validate_presence_of(:result) }
     it { should validate_inclusion_of(:result).in_array(%w[failed success refunded]) }
+  end
 
-    it 'is valid with valid attributes' do
-      transaction = create(:transaction)
-      expect(transaction).to be_valid
+  describe 'factories' do
+    describe 'transaction' do
+      it 'is valid with valid attributes' do
+        transaction = create(:transaction)
+        expect(transaction).to be_valid
+      end
     end
   end
 end

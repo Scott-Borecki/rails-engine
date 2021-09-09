@@ -8,7 +8,7 @@ class Api::V1::Revenue::ItemsController < ApplicationController
               Item.top_by_revenue
             end
     formatted_items = RevenueSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 
   private
@@ -23,6 +23,6 @@ class Api::V1::Revenue::ItemsController < ApplicationController
     validator = Api::V1::Revenue::ItemsValidator.new(items_params)
     return if validator.valid?
 
-    json_error_response(validator.errors, :bad_request)
+    render json_error_response(validator.errors, :bad_request)
   end
 end

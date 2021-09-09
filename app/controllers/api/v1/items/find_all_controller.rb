@@ -23,7 +23,7 @@ class Api::V1::Items::FindAllController < ApplicationController
     validator = Api::V1::Items::FindValidator.new(find_params)
     return if validator.valid?
 
-    json_error_response(validator.errors, :bad_request)
+    render json_error_response(validator.errors, :bad_request)
   end
 
   def find_all_by_max_price
@@ -31,7 +31,7 @@ class Api::V1::Items::FindAllController < ApplicationController
     return bad_request if items == 'bad request'
 
     formatted_items = ItemSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 
   def find_all_by_min_price
@@ -39,13 +39,13 @@ class Api::V1::Items::FindAllController < ApplicationController
     return bad_request if items == 'bad request'
 
     formatted_items = ItemSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 
   def find_all_by_name
     items = Item.find_all_by_name(params[:name])
     formatted_items = ItemSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 
   def find_all_by_price_range
@@ -53,6 +53,6 @@ class Api::V1::Items::FindAllController < ApplicationController
     return bad_request if items == 'bad request'
 
     formatted_items = ItemSerializer.format_items(items)
-    json_response(formatted_items)
+    render json_response(formatted_items)
   end
 end

@@ -5,7 +5,7 @@ class Api::V1::Items::MerchantController < ApplicationController
     item = Item.find(params[:item_id])
     merchant = item.merchant
     formatted_merchant = MerchantSerializer.format_merchant(merchant)
-    json_response(formatted_merchant)
+    render json_response(formatted_merchant)
   end
 
   private
@@ -18,6 +18,6 @@ class Api::V1::Items::MerchantController < ApplicationController
     validator = Api::V1::Items::MerchantValidator.new(merchant_params)
     return if validator.valid?
 
-    json_error_response(validator.errors, :not_found)
+    render json_error_response(validator.errors, :not_found)
   end
 end
