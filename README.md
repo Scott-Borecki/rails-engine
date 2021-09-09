@@ -18,9 +18,13 @@
 ## Overview
 This is an API that provides a means to access resources from an Ecommerce database.  This API uses both RESTful and non-RESTful endpoints.
 
+## Getting Started
+
+
+
 ## Endpoints
 
-The base path of each endpoint request is:
+Assuming you are accessing the API through your local server, the `base path` of each endpoint request should be:
 
 ```
 http://localhost:3000/api/v1
@@ -58,10 +62,23 @@ http://localhost:3000/api/v1
 - [Merchants with Most Items Sold](/doc/business_intelligence_endpoints.md#get-merchants-with-most-items-sold)
 - [Total Revenue for a Given Merchant](/doc/business_intelligence_endpoints.md#get-total-revenue-for-a-merchant)
 
-## Error Conditions
+## Contributors
 
-## Getting Started
+![GitHub Avatar: Scott Borecki][github-avatar] | Scott Borecki
 
-## License
+[![GitHub: Scott-Borecki][github-follow-badge]][GitHub]
+[![Email: scottborecki@gmail.com][gmail-badge]][gmail]<br>
+[![LinkedIn: scott-borecki][linkedin-badge]][LinkedIn]<br>
 
-## Acknowledgements
+<!-- Links -->
+[GitHub]: https://github.com/scott-borecki
+[gmail]: mailto:scottborecki@gmail.com
+[LinkedIn]: https://www.linkedin.com/in/scott-borecki/
+
+<!-- Badges -->
+[github-follow-badge]: https://img.shields.io/github/followers/scott-borecki?label=follow&style=social
+[gmail-badge]: https://img.shields.io/badge/gmail-scottborecki@gmail.com-green?style=flat&logo=gmail&logoColor=white&color=white&labelColor=EA4335
+[linkedin-badge]: https://img.shields.io/badge/Scott--Borecki-%23OpenToWork-green?style=flat&logo=Linkedin&logoColor=white&color=success&labelColor=0A66C2
+
+<!-- Images -->
+[github-avatar]: https://avatars.githubusercontent.com/u/79381792?s=24)
