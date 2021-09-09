@@ -137,7 +137,7 @@ describe 'MerchantSerializer', type: :serializer do
 
       context 'when I provide no valid merchants' do
         it 'returns a hash with empty data' do
-          empty_merchants = MerchantSerializer.format_merchants(nil)
+          empty_merchants = MerchantSerializer.format_merchants_items_sold(nil)
 
           expect(empty_merchants).to be_a Hash
           expect(empty_merchants.size).to eq(1)
