@@ -64,11 +64,8 @@ http://localhost:3000/api/v1
 
 ## Contributors
 
-![GitHub Avatar: Scott Borecki][github-avatar] | Scott Borecki
-
-[![GitHub: Scott-Borecki][github-follow-badge]][GitHub]
-[![Email: scottborecki@gmail.com][gmail-badge]][gmail]<br>
-[![LinkedIn: scott-borecki][linkedin-badge]][LinkedIn]<br>
+| ![GitHub Avatar: Scott Borecki][github-avatar] | Scott Borecki<br><br>[![GitHub: Scott-Borecki][github-follow-badge]][GitHub]<br>[![Email: scottborecki@gmail.com][gmail-badge]][gmail]<br>[![LinkedIn: scott-borecki][linkedin-badge]][LinkedIn]<br> |
+|-|-|
 
 <!-- Links -->
 [GitHub]: https://github.com/scott-borecki
@@ -81,4 +78,4 @@ http://localhost:3000/api/v1
 [linkedin-badge]: https://img.shields.io/badge/Scott--Borecki-%23OpenToWork-green?style=flat&logo=Linkedin&logoColor=white&color=success&labelColor=0A66C2
 
 <!-- Images -->
-[github-avatar]: https://avatars.githubusercontent.com/u/79381792?s=24)
+[github-avatar]: https://avatars.githubusercontent.com/u/79381792?s=100
