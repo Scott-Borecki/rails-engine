@@ -8,6 +8,8 @@ POST      | `/items/`                  | Create an item.            | [Link](#cr
 PATCH     | `/items/{item_id}`         | Update an item.            | [Link](#update-an-item)
 DELETE    | `/items/{item_id}`         | Delete an item.            | [Link](#delete-an-item)
 
+---
+
 ## Get All Items
 
 Returns a list of all the Items and their attributes.
@@ -23,13 +25,11 @@ Name       | Type    | In    | Description
 `per_page` | integer | query | Results per page<br>Default: `20`
 `page`     | integer | query | Page number of the results to fetch<br>Default: `1`
 
-
 ### Example Request
 
 ```
 GET http://localhost:3000/api/v1/items
 ```
-
 
 ### Example Response
 
@@ -74,6 +74,8 @@ Status: 200 OK
 }
 ```
 
+---
+
 ## Get One Item
 
 Returns an Item and its attributes.
@@ -82,20 +84,17 @@ Returns an Item and its attributes.
 GET /items/{item_id}
 ```
 
-
 ### Parameters
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
 `item_id`  | integer | path  | The ID of the item.
 
-
 ### Example Request
 
 ```
 GET http://localhost:3000/api/v1/items/179
 ```
-
 
 ### Example Response
 
@@ -124,6 +123,8 @@ Status: 200 OK
 Status: 404 Not Found
 ```
 
+---
+
 ## Create an Item
 
 Creates a new Item with the given attributes.
@@ -132,12 +133,10 @@ Creates a new Item with the given attributes.
 POST /items
 ```
 
-
 ### Parameters
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
-
 
 ### Request Body
 
@@ -147,7 +146,6 @@ Attribute Name | Type | Description
 `description` | string | The item's description.
 `unit_price` | float | The item's unit price.
 `merchant_id` | integer | The ID of the merchant associated with the item.
-
 
 ### Example Request
 
@@ -165,7 +163,6 @@ With the following example request body:
   "merchant_id": 43
 }
 ```
-
 
 ### Example Response
 
@@ -188,6 +185,7 @@ Status: 201 Created
 }
 ```
 
+---
 
 ## Update an Item
 
@@ -197,13 +195,11 @@ Updates an Item with the given attributes.
 PATCH /items/{id}
 ```
 
-
 ### Parameters
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
 `id`       | integer | path  |
-
 
 ### Request Body
 
@@ -214,11 +210,10 @@ Attribute Name | Type | Description
 `unit_price` | float | The item's unit price.
 `merchant_id` | integer | The ID of the merchant associated with the item.
 
-
 ### Example Request
 
 ```
-PATCH http://localhost:3000/api/v1/items/1
+PATCH http://localhost:3000/api/v1/items/179
 ```
 
 With the following example request body:
@@ -231,7 +226,6 @@ With the following example request body:
   "merchant_id": 43
 }
 ```
-
 
 ### Example Response
 
@@ -254,13 +248,13 @@ Status: 200 OK
 }
 ```
 
-
 ### Resource Not Found
 
 ```
 Status: 404 Not Found
 ```
 
+---
 
 ## Delete an Item
 
@@ -270,13 +264,11 @@ Destroys an Item.
 DELETE /items/{item_id}
 ```
 
-
 ### Parameters
 
 Name       | Type    | In    | Description
 -----------|---------|-------|--------------
 `item_id`  | integer | path  | The ID of the item.
-
 
 ### Example Request
 
@@ -304,7 +296,6 @@ Status: 200 OK
   }
 }
 ```
-
 
 ### Resource Not Found
 

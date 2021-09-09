@@ -3,8 +3,7 @@
 **Author**: [Scott Borecki](https://github.com/scott-borecki)
 
 ## Overview
-This is an API that provides a means to access resources from an Ecommerce database.  
-This API uses both RESTful and non-RESTful endpoints.
+This is an API that provides a means to access resources from an Ecommerce database.  This API uses both RESTful and non-RESTful endpoints.
 
 
 ## Endpoints
@@ -42,10 +41,10 @@ http://localhost:3000/api/v1
 
 ### Business Intelligence
 
-- [Merchants with Most Revenue](/doc/merchants/get_merchants_with_most_revenue.md)
-- [Merchants with Most Items Sold](/doc/merchants/get_merchants_with_most_items_sold.md)
-- [Total Revenue for a Given Merchant](/doc/merchants/get_total_revenue_for_merchant.md)
-- [Items by Most Revenue](/doc/items/get_items_with_most_revenue.md)
+- [Items by Most Revenue](/doc/business_intelligence_endpoints.md#get-items-with-most-revenue)
+- [Merchants with Most Revenue](/doc/business_intelligence_endpoints.md#get-merchants-with-most-revenue)
+- [Merchants with Most Items Sold](/doc/business_intelligence_endpoints.md#get-merchants-with-most-items-sold)
+- [Total Revenue for a Given Merchant](/doc/business_intelligence_endpoints.md#get-total-revenue-for-a-merchant)
 
 ## Error Conditions
 
