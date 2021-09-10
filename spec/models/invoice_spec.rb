@@ -52,7 +52,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values' do
             expect(invoice.status).to eq('shipped')
             expect(invoice.invoice_items.size).to eq(4)
             expect(InvoiceItem.all.size).to eq(4)
@@ -65,7 +65,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values except for invoice item count' do
             expect(invoice.status).to eq('shipped')
             expect(invoice.invoice_items.size).to eq(8)
             expect(InvoiceItem.all.size).to eq(8)
@@ -80,7 +80,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values' do
             expect(invoice.status).to eq('packaged')
             expect(invoice.invoice_items.size).to eq(4)
             expect(InvoiceItem.all.size).to eq(4)
@@ -93,7 +93,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values except for invoice item count' do
             expect(invoice.status).to eq('packaged')
             expect(invoice.invoice_items.size).to eq(8)
             expect(InvoiceItem.all.size).to eq(8)
@@ -106,7 +106,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values except for invoice status' do
             expect(invoice.status).to eq('returned')
             expect(invoice.invoice_items.size).to eq(4)
             expect(InvoiceItem.all.size).to eq(4)
@@ -119,7 +119,7 @@ RSpec.describe Invoice, type: :model do
 
           include_examples 'creates valid objects'
 
-          it 'creates a valid invoice' do
+          it 'applies the default values except for transaction result' do
             expect(invoice.status).to eq('packaged')
             expect(invoice.invoice_items.size).to eq(4)
             expect(InvoiceItem.all.size).to eq(4)
@@ -135,7 +135,7 @@ RSpec.describe Invoice, type: :model do
           # NOTE: In order for the Invoice to have revenue, it needs an Invoice
           #       status of 'shipped' and a Transaction result of 'success'.
           #       The method should not allow the two attributes to co-exist.
-          it 'creates a valid invoice and changes transaction result from "success"' do
+          it 'applies the default values except for invoice status' do
             expect(invoice.status).to eq('shipped')
             expect(invoice.invoice_items.size).to eq(4)
             expect(InvoiceItem.all.size).to eq(4)
