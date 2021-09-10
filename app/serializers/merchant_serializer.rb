@@ -1,6 +1,4 @@
 class MerchantSerializer
-  # TODO: Consider adding a 'no results' message for nil?
-  #       Would need to confirm that nil is only returned when it is empty.
   def self.format_merchant(merchant)
     {
       data:
