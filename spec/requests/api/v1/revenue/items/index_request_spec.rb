@@ -6,6 +6,18 @@ describe 'Revenue Items API', type: :request do
     let(:neg_quantity_message) { { quantity: ['must be greater than 0'] } }
     let(:no_number_quantity_message) { { quantity: ['is not a number'] } }
 
+    shared_examples 'status code 200' do
+      it 'returns status code 200: ok' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    shared_examples 'status code 400' do
+      it 'returns status code 400: bad request' do
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
     context 'when there are items' do
       # See /spec/factories/items.rb for #items_with_random_revenue
       let!(:items) { items_with_random_revenue(30) }
@@ -18,9 +30,7 @@ describe 'Revenue Items API', type: :request do
           expect(json_data.size).to eq(10)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide valid quantity query parameters' do
@@ -31,9 +41,7 @@ describe 'Revenue Items API', type: :request do
           expect(json_data.size).to eq(22)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide invalid quantity query parameters' do
@@ -47,9 +55,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(neg_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
 
       context 'when I provide a string quantity query parameters' do
@@ -63,9 +69,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(no_number_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
 
       context 'when I provide empty quantity query parameters' do
@@ -79,9 +83,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(empty_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
     end
 
@@ -94,9 +96,7 @@ describe 'Revenue Items API', type: :request do
           expect(json_data).to be_empty
         end
 
-        it 'returns status code 200: ok' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide valid quantity query parameters' do
@@ -107,9 +107,7 @@ describe 'Revenue Items API', type: :request do
           expect(json_data).to be_empty
         end
 
-        it 'returns status code 200: ok' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide invalid quantity query parameters' do
@@ -123,9 +121,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(neg_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
 
       context 'when I provide a string quantity query parameters' do
@@ -139,9 +135,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(no_number_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
 
       context 'when I provide empty quantity query parameters' do
@@ -155,9 +149,7 @@ describe 'Revenue Items API', type: :request do
           expect(json[:error]).to eq(empty_quantity_message)
         end
 
-        it 'returns status code 400: bad request' do
-          expect(response).to have_http_status(:bad_request)
-        end
+        include_examples 'status code 400'
       end
     end
   end

@@ -2,6 +2,12 @@ require 'rails_helper'
 
 describe 'Merchants API', type: :request do
   describe 'GET /api/v1/merchants' do
+    shared_examples 'status code 200' do
+      it 'returns status code 200: ok' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     context 'when there are merchants' do
       let!(:merchants) { create_list(:merchant, 30) }
 
@@ -13,9 +19,7 @@ describe 'Merchants API', type: :request do
           expect(json_data.size).to eq(20)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide per_page query parameters' do
@@ -26,9 +30,7 @@ describe 'Merchants API', type: :request do
           expect(json_data.size).to eq(25)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide page query parameters' do
@@ -39,9 +41,7 @@ describe 'Merchants API', type: :request do
           expect(json_data.size).to eq(10)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when I provide per_page and page query parameters' do
@@ -52,9 +52,7 @@ describe 'Merchants API', type: :request do
           expect(json_data.size).to eq(15)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
     end
 
@@ -66,17 +64,7 @@ describe 'Merchants API', type: :request do
         expect(json_data).to be_empty
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(:ok)
-      end
+      include_examples 'status code 200'
     end
   end
 end
-
-# TODO: Add tests for edge cases:
-#   - when there are merchants
-#     - per_page = 0:  returns the first page
-#     - per_page > number of merchants:  returns the all merchants, json_data.size = Merchant.all.size
-#     - page > number of pages:  returns the page with an empty array
-#   - when there no merchants
-#     - per_page = 0:  returns the first page with an empty array

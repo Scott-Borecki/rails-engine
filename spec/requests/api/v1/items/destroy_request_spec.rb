@@ -34,6 +34,3 @@ describe 'Items API', type: :request do
     end
   end
 end
-
-# TODO: Add tests for edge cases:
-#   - destroy any invoice if this was the only item on an invoice
