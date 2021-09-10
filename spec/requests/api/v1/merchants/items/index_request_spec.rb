@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Merchant Items API', type: :request do
   describe 'GET /api/v1/merchants/:merchant_id/items' do
     let!(:merchants) { create_list(:merchant, 30) }
@@ -19,22 +20,14 @@ describe 'Merchant Items API', type: :request do
         expect(json[:errors]).to eq(["Couldn't find Merchant with 'id'=#{bad_merchant_id}"])
       end
 
-      it 'returns status code 404: not found' do
-        expect(response).to have_http_status(:not_found)
-      end
+      include_examples 'status code 404'
     end
 
     context 'when the merchant has no items' do
       before { get "/api/v1/merchants/#{merchant.id}/items" }
 
-      it 'returns the data as an empty array', :aggregate_failures do
-        expect(json).not_to be_empty
-        expect(json_data).to be_empty
-      end
-
-      it 'returns status code 200' do
-        expect(response).to have_http_status(:ok)
-      end
+      include_examples 'returns nil data'
+      include_examples 'status code 200'
     end
 
     context 'when the merchant has items' do
@@ -50,9 +43,7 @@ describe 'Merchant Items API', type: :request do
         expect(json_data.last[:id]).to eq(merchant.items.last.id.to_s)
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(:ok)
-      end
+      include_examples 'status code 200'
     end
 
     context 'when the merchant id is given as a string' do
@@ -66,9 +57,7 @@ describe 'Merchant Items API', type: :request do
         expect(json[:error]).to eq({ merchant_id: ['is not a number'] })
       end
 
-      it 'returns status code 404: not found' do
-        expect(response).to have_http_status(:not_found)
-      end
+      include_examples 'status code 404'
     end
   end
 end

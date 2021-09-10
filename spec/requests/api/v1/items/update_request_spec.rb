@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Items API', type: :request do
   describe 'PATCH /api/v1/items/:id' do
     let!(:merchant) { create(:merchant) }
@@ -22,9 +23,7 @@ describe 'Items API', type: :request do
         expect(json[:errors]).to eq(error_message)
       end
 
-      it 'returns status code 404: not found' do
-        expect(response).to have_http_status(:not_found)
-      end
+      include_examples 'status code 404'
     end
 
     context 'when the item exists' do
@@ -47,9 +46,7 @@ describe 'Items API', type: :request do
           expect(json_data[:attributes][:merchant_id]).to eq(merchant.id)
         end
 
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:ok)
-        end
+        include_examples 'status code 200'
       end
 
       context 'when the request is invalid; unit_price not a number' do
@@ -68,9 +65,7 @@ describe 'Items API', type: :request do
           expect(json[:errors]).to eq(error_message)
         end
 
-        it 'returns status code 422: unprocessable entity' do
-          expect(response).to have_http_status(:unprocessable_entity)
-        end
+        include_examples 'status code 422'
       end
 
       context 'when the request is invalid; merchant does not exist' do
@@ -90,9 +85,7 @@ describe 'Items API', type: :request do
           expect(json[:errors]).to eq(error_message)
         end
 
-        it 'returns status code 404: not found' do
-          expect(response).to have_http_status(:not_found)
-        end
+        include_examples 'status code 404'
       end
     end
   end

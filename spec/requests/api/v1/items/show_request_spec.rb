@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Items API', type: :request do
   describe 'GET /api/v1/items/:id' do
     let!(:items) { create_list(:item, 30) }
@@ -14,9 +15,7 @@ describe 'Items API', type: :request do
         expect(json_data[:id]).to eq(item_id.to_s)
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(:ok)
-      end
+      include_examples 'status code 200'
     end
 
     context 'when the item record does not exist' do
@@ -32,9 +31,7 @@ describe 'Items API', type: :request do
         expect(json[:errors]).to eq(["Couldn't find Item with 'id'=40"])
       end
 
-      it 'returns status code 404: not found' do
-        expect(response).to have_http_status(:not_found)
-      end
+      include_examples 'status code 404'
     end
   end
 end

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Items API', type: :request do
   describe 'POST /api/v1/items' do
     let!(:merchant) { create(:merchant) }
@@ -24,9 +25,7 @@ describe 'Items API', type: :request do
         expect(json_data[:attributes][:merchant_id]).to eq(merchant.id)
       end
 
-      it 'returns status code 201: created' do
-        expect(response).to have_http_status(:created)
-      end
+      include_examples 'status code 201'
     end
 
     context 'when the request is invalid' do
@@ -49,9 +48,7 @@ describe 'Items API', type: :request do
         expect(json[:errors]).to eq(error_message)
       end
 
-      it 'returns status code 422: unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
+      include_examples 'status code 422'
     end
   end
 end

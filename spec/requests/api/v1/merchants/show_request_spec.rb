@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Merchants API', type: :request do
   describe 'GET /api/v1/merchants/:id' do
     let!(:merchants) { create_list(:merchant, 30) }
@@ -14,9 +15,7 @@ describe 'Merchants API', type: :request do
         expect(json_data[:id]).to eq(merchant_id.to_s)
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(:ok)
-      end
+      include_examples 'status code 200'
     end
 
     context 'when the merchant record does not exist' do
@@ -32,9 +31,7 @@ describe 'Merchants API', type: :request do
         expect(json[:errors]).to eq(["Couldn't find Merchant with 'id'=40"])
       end
 
-      it 'returns status code 404: not found' do
-        expect(response).to have_http_status(:not_found)
-      end
+      include_examples 'status code 404'
     end
   end
 end

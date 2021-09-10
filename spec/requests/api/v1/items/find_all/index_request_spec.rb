@@ -1,33 +1,8 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Items FindAll API', type: :request do
   describe 'GET /api/v1/items/find_all' do
-    shared_examples 'bad query: name and price' do
-      it 'returns a jSON object with an error', :aggregate_failures do
-        expect(json).to have_key(:error)
-        expect(json[:error]).to eq(bad_price_name_message)
-      end
-    end
-
-    shared_examples 'returns nil data' do
-      it 'returns a jSON with nil data', :aggregate_failures do
-        expect(json).not_to be_empty
-        expect(json_data).to be_empty
-      end
-    end
-
-    shared_examples 'status code 200' do
-      it 'returns status code 200: ok' do
-        expect(response).to have_http_status(:ok)
-      end
-    end
-
-    shared_examples 'status code 400' do
-      it 'returns status code 400: bad request' do
-        expect(response).to have_http_status(:bad_request)
-      end
-    end
-
     context 'when there are item records' do
       let!(:item1) { create(:item, name: 'BaA', unit_price: 5.25) } # Name Asc: 2; Price Desc: 5
       let!(:item2) { create(:item, name: 'bac', unit_price: 7.53) } # Name Asc: 5; Price Desc: 3
@@ -45,22 +20,14 @@ describe 'Items FindAll API', type: :request do
       context 'when I do not provide any query parameters' do
         before { get '/api/v1/items/find_all' }
 
-        it 'returns a jSON object with an error', :aggregate_failures do
-          expect(json).to have_key(:error)
-          expect(json[:error]).to eq(bad_query_message)
-        end
-
+        include_examples 'bad query: blank'
         include_examples 'status code 400'
       end
 
       context 'when I provide an empty query parameter' do
         before { get '/api/v1/items/find_all?name=' }
 
-        it 'returns a jSON object with an error', :aggregate_failures do
-          expect(json).to have_key(:error)
-          expect(json[:error]).to eq(bad_query_message)
-        end
-
+        include_examples 'bad query: blank'
         include_examples 'status code 400'
       end
 
@@ -101,11 +68,7 @@ describe 'Items FindAll API', type: :request do
         context 'when I use a negative minimum price' do
           before { get '/api/v1/items/find_all?min_price=-10' }
 
-          it 'returns a jSON object with an error', :aggregate_failures do
-            expect(json).to have_key(:error)
-            expect(json[:error]).to eq(neg_min_price_message)
-          end
-
+          include_examples 'bad query: negative min price'
           include_examples 'status code 400'
         end
       end
@@ -134,11 +97,7 @@ describe 'Items FindAll API', type: :request do
         context 'when I use a negative maximum price' do
           before { get '/api/v1/items/find_all?max_price=-10' }
 
-          it 'returns a jSON object with an error', :aggregate_failures do
-            expect(json).to have_key(:error)
-            expect(json[:error]).to eq(neg_max_price_message)
-          end
-
+          include_examples 'bad query: negative max price'
           include_examples 'status code 400'
         end
       end
@@ -167,11 +126,7 @@ describe 'Items FindAll API', type: :request do
         context 'when the minimum price is greater than the maximum price' do
           before { get '/api/v1/items/find_all?max_price=1&min_price=10' }
 
-          it 'returns a jSON object with an error', :aggregate_failures do
-            expect(json).to have_key(:error)
-            expect(json[:error]).to eq(bad_price_range_message)
-          end
-
+          include_examples 'bad query: price range'
           include_examples 'status code 400'
         end
 

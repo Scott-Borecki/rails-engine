@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# See spec/support/requests_shared_examples.rb for shared examples
 describe 'Revenue Merchants API', type: :request do
   describe 'GET /api/v1/revenue/merchants/:id' do
     # See /spec/factories/merchants.rb for #merchant_with_revenue
