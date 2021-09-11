@@ -26,7 +26,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/revenue/items?quantity=3
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/items?quantity=3
 ```
 
 ### Example Response
@@ -95,7 +95,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/revenue/merchants?quantity=3
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/merchants?quantity=3
 ```
 
 ### Example Response
@@ -155,7 +155,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants/most_items?quantity=3
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/most_items?quantity=3
 ```
 
 ### Example Response
@@ -214,7 +214,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/revenue/merchants/42
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/merchants/42
 ```
 
 ### Example Response

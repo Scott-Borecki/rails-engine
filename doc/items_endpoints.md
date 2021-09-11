@@ -28,7 +28,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/items
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items?per_page=3
 ```
 
 ### Example Response
@@ -93,7 +93,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/items/179
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/179
 ```
 
 ### Example Response
@@ -145,7 +145,7 @@ Attribute Name | Type | Description
 ### Example Request
 
 ```
-POST http://localhost:3000/api/v1/items
+POST https://rails-engine-scott-borecki.herokuapp.com/api/v1/items
 ```
 
 With the following example request body:
@@ -208,7 +208,7 @@ Attribute Name | Type | Description
 ### Example Request
 
 ```
-PATCH http://localhost:3000/api/v1/items/179
+PATCH https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/179
 ```
 
 With the following example request body:
@@ -268,7 +268,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-DELETE http://localhost:3000/api/v1/items/179
+DELETE https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/179
 ```
 
 ### Example Response

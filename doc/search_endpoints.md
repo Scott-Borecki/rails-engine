@@ -33,16 +33,16 @@ Name         | Type    | In    | Description
 
 ```
 Example 1 - Find with Name:
-GET http://localhost:3000/api/v1/items/find_all?name=hArU
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?name=hArU
 
 Example 2 - Find with Minimum Price:
-GET http://localhost:3000/api/v1/items/find_all?min_price=5.50
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?min_price=5.50
 
 Example 3 - Find with Maximum Price:
-GET http://localhost:3000/api/v1/items/find_all?max_price=99.99
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?max_price=99.99
 
 Example 4 - Find with Price Range:
-GET http://localhost:3000/api/v1/items/find_all?min_price=5.50&max_price=99.99
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?min_price=5.50&max_price=99.99
 
 ```
 
@@ -136,16 +136,16 @@ Name         | Type    | In    | Description
 
 ```
 Example 1 - Find by Name:
-GET http://localhost:3000/api/v1/items/find?name=hArU
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?name=hArU
 
 Example 2 - Find by Minimum Price:
-GET http://localhost:3000/api/v1/items/find?min_price=5.50
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?min_price=5.50
 
 Example 3 - Find by Maximum Price:
-GET http://localhost:3000/api/v1/items/find?max_price=99.99
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?max_price=99.99
 
 Example 4 - Find by Price Range:
-GET http://localhost:3000/api/v1/items/find?min_price=5.50&max_price=99.99
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?min_price=5.50&max_price=99.99
 
 ```
 
@@ -209,7 +209,7 @@ Name         | Type    | In    | Description
 ## Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants/find_all?name=ILL
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/find_all?name=ILL
 ```
 
 ## Example Response
@@ -283,7 +283,7 @@ Name         | Type    | In    | Description
 ## Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants/find?name=iLl
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/find?name=iLl
 ```
 
 ## Example Response

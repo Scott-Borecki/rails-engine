@@ -24,7 +24,7 @@ Name                | Type    | In    | Description
 ## Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants/99/items
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/99/items
 ```
 
 ## Example Response
@@ -94,7 +94,7 @@ Name            | Type    | In    | Description
 ## Example Request
 
 ```
-GET http://localhost:3000/api/v1/items/209/merchant
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/209/merchant
 ```
 
 ## Example Response

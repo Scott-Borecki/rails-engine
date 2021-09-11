@@ -25,7 +25,7 @@ Name       | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants?page=1&per_page=3
 ```
 
 ### Example Response
@@ -82,7 +82,7 @@ Name          | Type    | In    | Description
 ### Example Request
 
 ```
-GET http://localhost:3000/api/v1/merchants/42
+GET https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/42
 ```
 
 ### Example Response
