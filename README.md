@@ -16,6 +16,7 @@ Rails Engine is an API that exposes resources for an e-commerce application usin
 - [Getting Started](#getting-started)
 - [Endpoints](#endpoints)
 - [Project Background](#project-background)
+- [Database Schema](#database-schema)
 - [Contributors](#contributors)
 
 ## Technologies Used
@@ -89,6 +90,11 @@ In addition to the base project requirements, some extra explorations and extens
 - Completing all the Find and Find All endpoints for both Merchants and Items
 - Completing all the edge case tests
 - Deploying the API to Heroku for production
+
+## Database Schema
+
+![database-schema](/doc/database-schema.png)
+Created by Scott Borecki using [Lucid](https://lucid.app/)
 
 ## Contributors
 
