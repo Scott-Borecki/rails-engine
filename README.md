@@ -7,94 +7,88 @@
 [![Stargazers][stars-badge]][stars-url]
 [![Issues][issues-badge]][issues-url]
 
-Rails Engine is a built-from-scratch API that accesses resources from an Ecommerce database using RESTful and non-RESTful endpoints.
+Rails Engine is an API that exposes resources for an e-commerce application using RESTful and non-RESTful endpoints.
 
 ## Table of Contents
 
+- [Technologies Used](#technologies-used)
 - [Minimum Requirements](#minimum-requirements)
 - [Getting Started](#getting-started)
-- [Endpoints & Documentation](#endpoints--documentation)
-  - [Merchants](#merchants)
-  - [Items](#items)
-  - [Relationships](#relationships)
-  - [Search](#search)
-  - [Business Intelligence](#business-intelligence)
+- [Endpoints](#endpoints)
+- [Project Background](#project-background)
 - [Contributors](#contributors)
 
-## Minimum Requirements
-
+## Technologies Used
 - Rails 5.2.6
 - Ruby 2.7.2
-- PostgreSQL 9.3.x or later 
-- API Client
+- PostgreSQL 13.3
+- Gems: FactoryBot, Faker, Pry, RSpec, RuboCop, Shoulda-Matchers, SimpleCov
+- Processes: OOP, TDD, MVC, REST
+
+## Minimum Requirements
+To access the API endpoints, you need the following:
+- `GET` Requests: Internet browser
+- `POST`, `PATCH`, `DELETE` Requests: API client (such as [Postman][postman-url])
 
 ## Getting Started
 
-1. Fork this repository.
+The `base path` of each endpoint is:
 
-2. Clone your forked repository.
+```
+https://rails-engine-scott-borecki.herokuapp.com/api/v1
+```
 
-   `$ git clone` and the copied URL.
+- For `GET` requests, you can simply send the endpoint requests through your internet browser.  
+- For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client (such as [Postman][postman-url]) to provide the request body and access the endpoints.
 
-3. Install dependencies.
+## Endpoints
 
-   Navigate into the project directory and run `$ bundle install`.
+The following table presents each API endpoint and its documentation.  
+- For `GET` requests, an example link is provided for demonstration purposes.  
+- For other requests, you will need to use an API client (such as [Postman][postman-url]) to provide the request body and access the endpoints.
 
-4. Setup and migrate the database
+Endpoint | Docs | Example
+---------|------|--------
+**Merchants** | [docs][merchants-endpoints-link]
+Get All Merchants | [docs][get-all-merchants-docs] | [example][get-all-merchants-ex]
+Get One Merchant | [docs][get-one-merchant-docs] | [example][get-one-merchant-ex]
+**Items** | [docs][items-endpoints-link]
+Get All Items | [docs][get-all-items-docs] | [example][get-all-items-ex]
+Get One Item | [docs][get-one-item-docs] | [example][get-one-item-ex]
+Create an Item | [docs][create-an-item-docs]
+Update an Item | [docs][update-an-item-docs]
+Destroy an Item | [docs][delete-an-item-docs]
+**Relationships** | [docs][relationship-endpoints-link]
+Get a Merchant's Items | [docs][get-a-merchants-items-docs] | [example][get-a-merchants-items-ex]
+Get an Item's Merchant | [docs][get-an-items-merchant-docs] | [example][get-an-items-merchant-ex]
+**Search** | [docs][search-endpoints-link]
+Find All Items | [docs][find-all-items-docs] | [example][find-all-items-ex]
+Find One Item | [docs][find-one-item-docs] | [example][find-one-item-ex]
+Find All Merchants | [docs][find-all-merchants-docs] | [example][find-all-merchants-ex]
+Find One Merchant | [docs][find-one-merchant-docs] | [example][find-one-merchant-ex]
+**Business Intelligence** | [docs][bi-endpoints-link]
+Items by Most Revenue | [docs][get-items-with-most-revenue-docs] | [example][get-items-with-most-revenue-ex]
+Merchants with Most Revenue | [docs][get-merchants-with-most-revenue-docs] | [example][get-merchants-with-most-revenue-ex]
+Merchants with Most Items Sold | [docs][get-merchants-with-most-items-sold-docs] | [example][get-merchants-with-most-items-sold-ex]
+Total Revenue for a Given Merchant | [docs][get-total-revenue-for-merchant-docs] | [example][get-total-revenue-for-merchant-ex]
 
-   From the project directory, run `$ rails db:{drop,create,migrate,seed}`.
+## Project Background
 
-   Then run `$ rails db:schema:dump`.
+This project was developed by Scott Borecki during Mod 3 of Turing School's Back End Engineering Program.  The project was completed in 7 days, from creating the new rails application from scratch to deploying it to Heroku.
 
-5. Start the Rails Server.
+The project description and base requirements can be found here: [link][rails-engine-home]
 
-   From the project directory, run `$ rails s`.
+In addition to the base project requirements, some extra explorations and extensions completed included:
 
-6. Fire up your favorite API client.
-
-   For `GET` requests, you can simply send the endpoint requests through your internet browser.  
-
-   For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client such as [Postman][postman-url].
-
-   The `base path` of each endpoint is:
-
-   ```
-   http://localhost:3000/api/v1
-   ```
-
-## Endpoints & Documentation
-
-### [Merchants](/doc/merchants_endpoints.md)
-
-- [Get All Merchants](/doc/merchants_endpoints.md#get-all-merchants)
-- [Get One Merchant](/doc/merchants_endpoints.md#get-one-merchant)
-
-### [Items](/doc/items_endpoints.md)
-
-- [Get All Items](/doc/items_endpoints.md#get-all-items)
-- [Get One Item](/doc/items_endpoints.md#get-one-item)
-- [Create an Item](/doc/items_endpoints.md#create-an-item)
-- [Update an Item](/doc/items_endpoints.md#update-an-item)
-- [Destroy an Item](/doc/items_endpoints.md#delete-an-item)
-
-### [Relationships](/doc/relationship_endpoints.md)
-
-- [Get a Merchant's Items](/doc/relationship_endpoints.md#get-a-merchants-items)
-- [Get an Item's Merchant](/doc/relationship_endpoints.md#get-an-items-merchant)
-
-### [Search](/doc/search_endpoints.md)
-
-- [Find All Items](/doc/search_endpoints.md#find-all-items)
-- [Find One Item](/doc/search_endpoints.md#find-one-item)
-- [Find All Merchants](/doc/search_endpoints.md#find-all-merchants)
-- [Find One Merchant](/doc/search_endpoints.md#find-one-merchant)
-
-### [Business Intelligence](/doc/business_intelligence_endpoints.md)
-
-- [Items by Most Revenue](/doc/business_intelligence_endpoints.md#get-items-with-most-revenue)
-- [Merchants with Most Revenue](/doc/business_intelligence_endpoints.md#get-merchants-with-most-revenue)
-- [Merchants with Most Items Sold](/doc/business_intelligence_endpoints.md#get-merchants-with-most-items-sold)
-- [Total Revenue for a Given Merchant](/doc/business_intelligence_endpoints.md#get-total-revenue-for-a-merchant)
+- Validating query params by leveraging ActiveModel::Validations
+- Using customized FactoryBot methods to significantly DRY up code in test files
+- Documenting complicated methods following TomDoc for Ruby specifications
+- Creating documentation for each API endpoint to assist user
+- Using GitHub Projects to track user stories and progress as well as creating new issues
+- Implementing RuboCop and RuboCop extensions for code styling and best practices
+- Completing all the Find and Find All endpoints for both Merchants and Items
+- Completing all the edge case tests
+- Deploying the API to Heroku for production
 
 ## Contributors
 
@@ -114,12 +108,53 @@ Rails Engine is a built-from-scratch API that accesses resources from an Ecommer
 [issues-badge]: https://img.shields.io/github/issues/scott-borecki/rails-engine.svg?style=flat-square
 [issues-url]: https://github.com/scott-borecki/rails-engine/issues
 
+<!-- Docs -->
+[merchants-endpoints-link]: /doc/merchants_endpoints.md
+[get-all-merchants-docs]: /doc/merchants_endpoints.md#get-all-merchants
+[get-one-merchant-docs]: /doc/merchants_endpoints.md#get-one-merchant
+[items-endpoints-link]: /doc/items_endpoints.md
+[get-all-items-docs]: /doc/items_endpoints.md#get-all-items
+[get-one-item-docs]: /doc/items_endpoints.md#get-one-item
+[create-an-item-docs]: /doc/items_endpoints.md#create-an-item
+[update-an-item-docs]: /doc/items_endpoints.md#update-an-item
+[delete-an-item-docs]: /doc/items_endpoints.md#delete-an-item
+[relationship-endpoints-link]: /doc/relationship_endpoints.md
+[get-a-merchants-items-docs]: /doc/relationship_endpoints.md#get-a-merchants-items
+[get-an-items-merchant-docs]: /doc/relationship_endpoints.md#get-an-items-merchant
+[search-endpoints-link]: /doc/search_endpoints.md
+[find-all-items-docs]: /doc/search_endpoints.md#find-all-items
+[find-one-item-docs]: /doc/search_endpoints.md#find-one-item
+[find-all-merchants-docs]: /doc/search_endpoints.md#find-all-merchants
+[find-one-merchant-docs]: /doc/search_endpoints.md#find-one-merchant
+[bi-endpoints-link]: /doc/business_intelligence_endpoints.md
+[get-items-with-most-revenue-docs]: /doc/business_intelligence_endpoints.md#get-items-with-most-revenue
+[get-merchants-with-most-revenue-docs]: /doc/business_intelligence_endpoints.md#get-merchants-with-most-revenue
+[get-merchants-with-most-items-sold-docs]: /doc/business_intelligence_endpoints.md#get-merchants-with-most-items-sold
+[get-total-revenue-for-merchant-docs]: /doc/business_intelligence_endpoints.md#get-total-revenue-for-a-merchant
+
+<!-- Examples -->
+[get-all-merchants-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants?page=1&per_page=3
+[get-one-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/42
+[get-all-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items?per_page=3
+[get-one-item-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/179
+[get-a-merchants-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/99/items
+[get-an-items-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/209/merchant
+[find-all-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?min_price=94.99&max_price=99.99
+[find-one-item-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?min_price=94.99&max_price=99.99
+[find-all-merchants-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/find_all?name=ILL
+[find-one-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/find?name=ILL
+[get-items-with-most-revenue-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/items?quantity=3
+[get-merchants-with-most-revenue-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/merchants?quantity=3
+[get-merchants-with-most-items-sold-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/most_items?quantity=3
+[get-total-revenue-for-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/revenue/merchants/42
+
 <!-- Links -->
 [Repository]: https://github.com/Scott-Borecki/rails-engine
 [GitHub]: https://github.com/scott-borecki
 [gmail]: mailto:scottborecki@gmail.com
 [LinkedIn]: https://www.linkedin.com/in/scott-borecki/
 [postman-url]: https://www.postman.com/
+[rails-engine-home]: https://backend.turing.edu/module3/projects/rails_engine/
 
 <!-- Badges -->
 [github-follow-badge]: https://img.shields.io/github/followers/scott-borecki?label=follow&style=social
