@@ -21,7 +21,7 @@ GET /revenue/items
 
 Name       | Data Type    | In    | Required/Optional | Description
 -----------|--------------|-------|-------------------|------------
-`quantity` | Integer | Query | Optional | Specify how many items are returned.<br>Default: `10`
+`quantity` | Integer | Query | Optional | Specify how many items are returned.<br>Default: `10`<br>Must be greater than `0`.
 
 ### Example Request
 
@@ -89,7 +89,7 @@ GET /revenue/merchants
 
 Name       | Data Type    | In    | Required/Optional | Description
 -----------|--------------|-------|-------------------|------------
-`quantity` | Integer | Query | Required | Specify how many merchants are returned.
+`quantity` | Integer | Query | Required | Specify how many merchants are returned.<br>Minimum Length: 1<br>Must be greater than `0`.
 
 
 ### Example Request
@@ -149,7 +149,7 @@ GET /merchants/most_items
 
 Name       | Data Type    | In    | Required/Optional | Description
 -----------|--------------|-------|-------------------|------------
-`quantity` | Integer | Query | Required | Specify how many merchants are returned.
+`quantity` | Integer | Query | Required | Specify how many merchants are returned.<br>Minimum Length: 1<br>Must be greater than `0`.
 
 
 ### Example Request

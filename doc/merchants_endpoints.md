@@ -19,8 +19,8 @@ GET /merchants
 
 Name       | Data Type    | In    | Required/Optional | Description
 -----------|--------------|-------|-------------------|------------
-`per_page` | Integer | Query | Optional | Specify how many results are returned per page.<br>Default: `20`
-`page`     | Integer | Query | Optional | Specify which page to query.<br>Default: `1`
+`per_page` | Integer | Query | Optional | Specify how many results are returned per page.<br>Default: `20`<br>Must be greater than `0`.
+`page`     | Integer | Query | Optional | Specify which page to query.<br>Default: `1`br>Must be greater than `0`.
 
 ### Example Request
 
