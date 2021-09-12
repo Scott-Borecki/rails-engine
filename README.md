@@ -28,8 +28,8 @@ Rails Engine is an API that exposes resources for an e-commerce application usin
 
 ## Minimum Requirements
 To access the API endpoints, you need the following:
-- `GET` Requests: Internet browser
-- `POST`, `PATCH`, `DELETE` Requests: API client (such as [Postman][postman-url])
+- `GET` Requests: Internet browser or API client (such as [Postman][postman-url])
+- `POST`, `PATCH`, `DELETE` Requests: API client
 
 ## Getting Started
 
@@ -40,13 +40,14 @@ https://rails-engine-scott-borecki.herokuapp.com/api/v1
 ```
 
 - For `GET` requests, you can simply send the endpoint requests through your internet browser.  
-- For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client (such as [Postman][postman-url]) to provide the request body and access the endpoints.
+- For any other requests (i.e. `POST`, `PATCH`, `DELETE`), you will need to use an API client to provide the request body and access the endpoints.
 
 ## Endpoints
 
 The following table presents each API endpoint and its documentation.  
 - For `GET` requests, an example link is provided for demonstration purposes.  
-- For other requests, you will need to use an API client (such as [Postman][postman-url]) to provide the request body and access the endpoints.
+
+Unless otherwise noted, the results are sorted by name in case-sensitive alphabetical order (i.e. A-Z then a-z).
 
 Endpoint | Docs | Example
 ---------|------|--------
