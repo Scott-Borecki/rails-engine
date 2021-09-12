@@ -45,9 +45,10 @@ https://rails-engine-scott-borecki.herokuapp.com/api/v1
 ## Endpoints
 
 The following table presents each API endpoint and its documentation.  
-- For `GET` requests, an example link is provided for demonstration purposes.  
 
-Unless otherwise noted, the results are sorted by name in case-sensitive alphabetical order (i.e. A-Z then a-z).
+Notes:
+- For `GET` requests, an example link is provided for demonstration purposes.  
+- Unless otherwise noted, the results are sorted by name in case-sensitive alphabetical order (i.e. A-Z then a-z).
 
 Endpoint | Docs | Example
 ---------|------|--------
@@ -84,8 +85,9 @@ In addition to the base project requirements, some extra explorations and extens
 
 - Validating query params by leveraging ActiveModel::Validations
 - Using customized FactoryBot methods to significantly DRY up code in test files
-- Documenting complicated methods following TomDoc for Ruby specifications
-- Creating documentation for each API endpoint to assist user
+- Using RSpec's Shared Examples feature for frequently-used tests to DRY up code in test files
+- Documenting complicated methods in general accordance with TomDoc for Ruby specifications
+- Creating documentation for each API endpoint to assist user in production
 - Using GitHub Projects to track user stories and progress as well as creating new issues
 - Implementing RuboCop and RuboCop extensions for code styling and best practices
 - Completing all the Find and Find All endpoints for both Merchants and Items
