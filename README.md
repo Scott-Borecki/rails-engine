@@ -143,7 +143,7 @@ Created by Scott Borecki using [Lucid](https://lucid.app/)
 [get-one-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/42
 [get-all-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items?per_page=3
 [get-one-item-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/179
-[get-a-merchants-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/99/items
+[get-a-merchants-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/merchants/33/items
 [get-an-items-merchant-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/209/merchant
 [find-all-items-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find_all?min_price=94.99&max_price=99.99
 [find-one-item-ex]: https://rails-engine-scott-borecki.herokuapp.com/api/v1/items/find?min_price=94.99&max_price=99.99
