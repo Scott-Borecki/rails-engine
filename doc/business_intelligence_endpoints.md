@@ -19,9 +19,9 @@ GET /revenue/items
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`quantity` | integer | query | Quantity of items returned.<br>Default: `10`
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`quantity` | Integer | Query | Optional | Specify how many items are returned.<br>Default: `10`
 
 ### Example Request
 
@@ -87,9 +87,9 @@ GET /revenue/merchants
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`quantity` | integer | query | Quantity of merchants returned.<br>Quantity must be provided
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`quantity` | Integer | Query | Required | Specify how many merchants are returned.
 
 
 ### Example Request
@@ -147,9 +147,9 @@ GET /merchants/most_items
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`quantity` | integer | query | Quantity of merchants returned.<br>Quantity must be provided
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`quantity` | Integer | Query | Required | Specify how many merchants are returned.
 
 
 ### Example Request
@@ -207,9 +207,9 @@ GET /revenue/merchants/{merchant_id}
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`merchant_id` | integer | path | The ID of the merchant.
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`merchant_id` | Integer | Path | Required | The ID of the merchant.
 
 ### Example Request
 

@@ -19,12 +19,13 @@ GET /items/find_all
 
 ## Parameters
 
-Name         | Type    | In    | Description
--------------|---------|-------|--------------
-`name`       | string  | query | The item name.
-`min_price`  | integer | query | Minimum price of the results to fetch.<br>Must be greater than `0`.
-`max_price`  | integer | query | Maximum price of the results to fetch.<br>Must be greater than `0`.
+Name        | Data Type | In    | Required/Optional    | Description
+------------|---------|-------|----------------------|------------
+`name`      | String  | Query | Required (see notes) | Pass a text query to search by an item's name.<br> Minimum Length: 1
+`min_price` | Integer/Float | Query | Required (see notes) | Pass a number query to search by an item's minimum price.<br>Must be greater than `0`.
+`max_price` | Integer/Float | Query | Required (see notes) | Pass a number query to search by an item's maximum price.<br>Must be greater than `0`.
 
+Notes:
 - At least one query parameter must be provided.
 - The `name` must be queried on its own and cannot be queried with either `min_price` or `max_price`.
 - `min_price` and `max_price` can be queried together to find by price range.
@@ -122,12 +123,13 @@ GET /items/find
 
 ## Parameters
 
-Name         | Type    | In    | Description
--------------|---------|-------|--------------
-`name`       | string  | query | The item name.
-`min_price`  | integer | query | Minimum price of the results to fetch.<br>Must be greater than `0`.
-`max_price`  | integer | query | Maximum price of the results to fetch.<br>Must be greater than `0`.
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`name`      | String  | Query | Required (see notes) | Pass a text query to search by an item's name.<br> Minimum Length: 1
+`min_price` | Integer/Float | Query | Required (see notes) | Pass a number query to search by an item's minimum price.<br>Must be greater than `0`.
+`max_price` | Integer/Float | Query | Required (see notes) | Pass a number query to search by an item's maximum price.<br>Must be greater than `0`.
 
+Notes:
 - At least one query parameter must be provided.
 - The `name` must be queried on its own and cannot be queried with either `min_price` or `max_price`.
 - `min_price` and `max_price` can be queried together to find by price range.
@@ -202,9 +204,9 @@ GET /merchants/find_all
 
 ## Parameters
 
-Name         | Type    | In    | Description
--------------|---------|-------|--------------
-`name`       | string  | query | The merchant name (required).
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`name`      | String  | Query | Required | Pass a text query to search by an merchant's name.<br> Minimum Length: 1
 
 ## Example Request
 
@@ -276,9 +278,9 @@ GET /merchants/find
 
 ## Parameters
 
-Name         | Type    | In    | Description
--------------|---------|-------|--------------
-`name`       | string  | query | The merchant name (required).
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`name`      | String  | Query | Required | Pass a text query to search by an merchant's name.<br> Minimum Length: 1
 
 ## Example Request
 

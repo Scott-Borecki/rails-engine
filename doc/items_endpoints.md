@@ -20,10 +20,10 @@ GET /items
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|----------------------------------------------------
-`per_page` | integer | query | Results per page.<br>Default: `20`
-`page`     | integer | query | Page number of the results to fetch.<br>Default: `1`
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`per_page` | Integer | Query | Optional | Specify how many results are returned per page.<br>Default: `20`
+`page`     | Integer | Query | Optional | Specify which page to query.<br>Default: `1`
 
 ### Example Request
 
@@ -86,9 +86,9 @@ GET /items/{item_id}
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`item_id`  | integer | path  | The ID of the item.
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`item_id`  | Integer | Path  | Required | The ID of the item.
 
 ### Example Request
 
@@ -135,12 +135,12 @@ POST /items
 
 ### Request Body
 
-Attribute Name | Type | Description
+Attribute Name | Data Type | Description
 ---------------|------|-------------
-`name` | string | The item's name.
-`description` | string | The item's description.
-`unit_price` | float | The item's unit price.
-`merchant_id` | integer | The ID of the merchant associated with the item.
+`name` | String | The item's name.
+`description` | String | The item's description.
+`unit_price` | Float | The item's unit price.
+`merchant_id` | Integer | The ID of the merchant associated with the item.
 
 ### Example Request
 
@@ -192,18 +192,18 @@ PATCH /items/{id}
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`id`       | integer | path  | The ID of the item.
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`id`       | Integer | Path  | Required | The ID of the item.
 
 ### Request Body
 
-Attribute Name | Type | Description
+Attribute Name | Data Type | Description
 ---------------|------|-------------
-`name` | string | The item's name.
-`description` | string | The item's description.
-`unit_price` | float | The item's unit price.
-`merchant_id` | integer | The ID of the merchant associated with the item.
+`name` | String | The item's name.
+`description` | String | The item's description.
+`unit_price` | Float | The item's unit price.
+`merchant_id` | Integer | The ID of the merchant associated with the item.
 
 ### Example Request
 
@@ -261,9 +261,9 @@ DELETE /items/{item_id}
 
 ### Parameters
 
-Name       | Type    | In    | Description
------------|---------|-------|--------------
-`item_id`  | integer | path  | The ID of the item.
+Name       | Data Type    | In    | Required/Optional | Description
+-----------|--------------|-------|-------------------|------------
+`item_id`  | Integer | Path  | Required | The ID of the item.
 
 ### Example Request
 
